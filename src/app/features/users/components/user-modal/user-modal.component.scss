@@ -4,7 +4,9 @@
 // ============================================================
 
 @use '../tokens/spacing' as *;
+@use '../tokens/shadows' as *;
 @use '../utilities/responsive' as *;
+@use '../mixins/animations' as *;
 
 // ============================================================
 // USER FORM
@@ -13,12 +15,20 @@
 .user-form {
   display: flex;
   flex-direction: column;
-  gap: $spacing-sm;
+  gap: $spacing-lg;
   min-width: 400px;
-  padding-top: $spacing-md;
+  padding-top: $spacing-lg;
 
   @include mobile-only {
     min-width: unset;
+  }
+
+  mat-form-field {
+    transition: all 0.2s ease;
+
+    &:focus-within {
+      opacity: 1;
+    }
   }
 }
 
@@ -38,9 +48,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr 120px;
   gap: $spacing-xl;
+  margin-top: $spacing-md;
 
   @include mobile-only {
     grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+
+  @include tablet-portrait {
+    grid-template-columns: 1fr 1fr;
+
+    > :last-child {
+      grid-column: 1 / -1;
+    }
   }
 }
 
@@ -50,6 +70,15 @@
 
 .form-hint {
   font: var(--mat-sys-body-small);
-  color: var(--mat-sys-tertiary);
+  color: var(--mat-sys-on-surface-variant);
   margin: 0;
+  padding: $spacing-md $spacing-lg;
+  background-color: var(--mat-sys-surface-container-lowest);
+  border-left: 3px solid var(--mat-sys-tertiary);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-surface-container);
+  }
 }

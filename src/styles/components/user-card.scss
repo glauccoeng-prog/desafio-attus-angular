@@ -4,17 +4,26 @@
 // ============================================================
 
 @use '../tokens/spacing' as *;
+@use '../tokens/shadows' as *;
 @use '../utilities/responsive' as *;
+@use '../mixins/animations' as *;
 
 // ============================================================
 // CARD CONTAINER
 // ============================================================
 
 .user-card {
-  transition: box-shadow 0.2s ease;
+  transition: all 0.2s ease;
+  border-radius: 8px;
 
   &:hover {
-    box-shadow: var(--mat-sys-level2);
+    box-shadow: $shadow-level-3;
+    transform: translateY(-2px);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--mat-sys-primary);
+    outline-offset: 2px;
   }
 }
 
@@ -44,6 +53,14 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: $shadow-level-1;
+
+  .user-card:hover & {
+    box-shadow: $shadow-level-2;
+    transform: scale(1.08);
+  }
 }
 
 // ============================================================
@@ -64,6 +81,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  .user-card:hover & {
+    color: var(--mat-sys-primary);
+  }
 }
 
 // User email
@@ -73,6 +96,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: $spacing-xs;
+  transition: color 0.2s ease;
+
+  .user-card:hover & {
+    color: var(--mat-sys-on-surface);
+  }
 }
 
 // ============================================================
@@ -98,9 +127,31 @@
   flex-shrink: 0;
   display: flex;
   gap: $spacing-sm;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  .user-card:hover & {
+    opacity: 1;
+  }
+
+  button {
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
 }
 
 // Delete button color
 .delete-btn {
   color: var(--mat-sys-error);
+
+  &:hover {
+    color: darken(var(--mat-sys-error), 10%);
+  }
 }

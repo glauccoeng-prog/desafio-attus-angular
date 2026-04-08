@@ -24,20 +24,28 @@
 
 .header {
   background-color: var(--mat-sys-surface);
-  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: $shadow-level-1;
   padding: $spacing-lg $spacing-3xl;
   display: flex;
   align-items: center;
-  gap: $spacing-md;
+  justify-content: space-between;
+  gap: $spacing-xl;
+  transition: box-shadow 0.2s ease;
 
   @include mobile-only {
     padding: $spacing-lg $spacing-sm $spacing-lg $spacing-xs;
+    gap: $spacing-md;
   }
 }
 
 // Menu button (mobile)
 .header__menu-btn {
   flex-shrink: 0;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--mat-sys-primary);
+  }
 
   @include desktop-and-up {
     display: none;
@@ -47,9 +55,12 @@
 // Page title in header
 .header__title {
   font: var(--mat-sys-title-medium);
-  color: var(--mat-sys-on-surface-variant);
+  color: var(--mat-sys-on-surface);
   margin: 0;
   white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 // ============================================================
@@ -64,9 +75,19 @@
   width: 100%;
   box-sizing: border-box;
   overflow-y: auto;
+  transition: padding 0.2s ease;
 
   @include mobile-only {
     padding: $spacing-xl;
+    max-width: 100%;
+  }
+
+  @include tablet-and-up {
+    padding: $spacing-2xl $spacing-3xl;
+  }
+
+  @include desktop-and-up {
+    padding: $spacing-3xl;
   }
 }
 
@@ -88,20 +109,40 @@
   padding: $spacing-lg $spacing-xl;
   background-color: var(--mat-sys-error-container);
   color: var(--mat-sys-on-error-container);
-  border-radius: 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--mat-sys-error);
   margin-bottom: $spacing-xl;
+  box-shadow: $shadow-level-1;
+  animation: slide-in-top 0.3s ease-out;
 
   mat-icon {
     flex-shrink: 0;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
   }
 
   span {
     flex: 1;
-    font: var(--mat-sys-body-small);
+    font: var(--mat-sys-body-medium);
   }
 
   button {
     flex-shrink: 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  @include mobile-only {
+    flex-direction: column;
+    align-items: flex-start;
+
+    button {
+      align-self: flex-end;
+    }
   }
 }
 
@@ -117,10 +158,16 @@
   padding: $spacing-8xl 0;
   gap: $spacing-xl;
   color: var(--mat-sys-on-surface-variant);
+  animation: fade-in 0.3s ease-out;
 
   p {
     font: var(--mat-sys-body-medium);
     margin: 0;
+    animation: fade-in 0.5s ease-out 0.1s both;
+  }
+
+  @include mobile-only {
+    padding: $spacing-4xl $spacing-xl;
   }
 }
 
@@ -132,19 +179,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: $spacing-8xl 0;
+  padding: $spacing-8xl $spacing-xl;
   color: var(--mat-sys-on-surface-variant);
+  animation: fade-in 0.3s ease-out;
 
   mat-icon {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
-    margin-bottom: $spacing-md;
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: $spacing-lg;
+    opacity: 0.5;
   }
 
   p {
     font: var(--mat-sys-body-medium);
     margin: 0;
+  }
+
+  @include mobile-only {
+    padding: $spacing-4xl $spacing-xl;
+
+    mat-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+    }
   }
 }
 
@@ -169,6 +228,11 @@
   gap: $spacing-sm;
   padding-top: $spacing-3xl;
   flex-wrap: wrap;
+  transition: all 0.2s ease;
+
+  @include mobile-only {
+    padding-top: $spacing-2xl;
+  }
 }
 
 // Inactive pagination button
@@ -176,6 +240,12 @@
   background-color: transparent;
   box-shadow: none;
   color: var(--mat-sys-on-surface-variant);
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(var(--mat-sys-primary), 0.05);
+    color: var(--mat-sys-primary);
+  }
 }
 
 // Pagination info text
@@ -183,6 +253,13 @@
   margin-left: $spacing-lg;
   font: var(--mat-sys-body-small);
   color: var(--mat-sys-on-surface-variant);
+
+  @include mobile-only {
+    margin-left: 0;
+    margin-top: $spacing-lg;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 // ============================================================
@@ -196,4 +273,25 @@
   z-index: 10;
   background-color: $color-error !important;
   color: white !important;
+  box-shadow: $shadow-level-4 !important;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: $shadow-level-5 !important;
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include mobile-only {
+    bottom: $spacing-xl;
+    right: $spacing-xl;
+  }
+
+  @include tablet-and-up {
+    bottom: $spacing-2xl;
+    right: $spacing-2xl;
+  }
 }
