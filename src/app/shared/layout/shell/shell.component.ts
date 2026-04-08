@@ -25,7 +25,54 @@ import { toSignal } from '@angular/core/rxjs-interop';
     MatListModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./shell.component.scss'],
+  styles: [`
+    .shell {
+      height: 100%;
+    }
+
+    .shell__sidenav {
+      width: 280px;
+      border-right: 1px solid var(--mat-sys-outline-variant);
+      overflow-x: hidden !important;
+    }
+
+    .sidenav__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 24px 16px 16px;
+    }
+
+    .sidenav__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sidenav__title {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--mat-sys-primary);
+      line-height: 1.3;
+    }
+
+    .sidenav__subtitle {
+      font: var(--mat-sys-body-small);
+      color: var(--mat-sys-on-surface-variant);
+    }
+
+    .sidenav__item--active {
+      background-color: var(--mat-sys-secondary-container) !important;
+      border-radius: 28px;
+      margin: 0 12px;
+    }
+
+    .shell__content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  `],
   template: `
     <mat-sidenav-container class="shell">
       <!-- Sidenav / Drawer -->

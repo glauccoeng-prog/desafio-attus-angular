@@ -32,7 +32,72 @@ export interface UserModalData {
     MatIconModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./user-modal.component.scss'],
+  styles: [`
+    .user-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 400px;
+      padding-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .user-form {
+        min-width: unset;
+      }
+    }
+
+    .user-form mat-form-field {
+      transition: all 0.2s ease;
+    }
+
+    .user-form mat-form-field:focus-within {
+      opacity: 1;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 120px;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 900px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-row > :last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .form-hint {
+      font: var(--mat-sys-body-small);
+      color: var(--mat-sys-on-surface-variant);
+      margin: 0;
+      padding: 8px 12px;
+      background-color: var(--mat-sys-surface-container-lowest);
+      border-left: 3px solid var(--mat-sys-tertiary);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .form-hint:hover {
+      background-color: var(--mat-sys-surface-container);
+    }
+  `],
   template: `
     <h2 mat-dialog-title>
       {{ data.user ? 'Editar usuário' : 'Adicionar novo usuário' }}
