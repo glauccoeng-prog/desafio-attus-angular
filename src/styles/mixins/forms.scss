@@ -2,11 +2,7 @@
 // FORM MIXINS
 // Estilos reutilizáveis para formulários e inputs
 // ============================================================
-
-@use '../tokens/colors' as *;
-@use '../tokens/spacing' as *;
-@use '../tokens/shadows' as *;
-@use '../tokens/typography' as *;
+// Todos os tokens e variáveis são importadas globalmente via src/styles.scss
 
 // MIXIN: Input base
 @mixin input-base {

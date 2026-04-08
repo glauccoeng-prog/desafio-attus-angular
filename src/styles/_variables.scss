@@ -1,0 +1,21 @@
+// ============================================================
+// GLOBAL VARIABLES & TOKENS
+// Arquivo central que exporta todos os tokens, mixins e utilities
+// ============================================================
+
+// Tokens
+@import 'src/styles/tokens/colors';
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/typography';
+@import 'src/styles/tokens/shadows';
+
+// Mixins
+@import 'src/styles/mixins/buttons';
+@import 'src/styles/mixins/cards';
+@import 'src/styles/mixins/forms';
+@import 'src/styles/mixins/animations';
+
+// Utilities
+@import 'src/styles/utilities/responsive';
+@import 'src/styles/utilities/spacing-utilities';
+@import 'src/styles/utilities/typography-utilities';

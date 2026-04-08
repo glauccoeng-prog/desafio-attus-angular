@@ -3,9 +3,9 @@
 // Página principal - Listagem de usuários com header, filtro, paginação e FAB
 // ============================================================
 
-@use '../tokens/spacing' as *;
-@use '../tokens/colors' as *;
-@use '../utilities/responsive' as *;
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/colors';
+@import 'src/styles/utilities/responsive';
 
 // ============================================================
 // HOST CONTAINER

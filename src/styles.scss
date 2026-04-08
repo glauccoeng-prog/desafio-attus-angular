@@ -2,20 +2,15 @@
 // DESIGN TOKENS, MIXINS & GLOBAL STYLES
 // ============================================================
 
-// Import design tokens
-@import './styles/tokens/index';
+// @use rules MUST come first in SCSS
+@use '@angular/material' as mat;
 
-// Import mixins
-@import './styles/mixins/index';
-
-// Import utilities
-@import './styles/utilities/index';
+// Import all design tokens, mixins and utilities globally
+// This makes them available to all component stylesheets
+@import 'src/styles/variables';
 
 // Import component and layout styles
-@import './styles/components/index';
-
-// Import Angular Material theming
-@use '@angular/material' as mat;
+@import 'src/styles/components/index';
 
 html {
   height: 100%;

@@ -3,10 +3,10 @@
 // Card individual de usuário com avatar, nome, email, CPF e ações
 // ============================================================
 
-@use '../tokens/spacing' as *;
-@use '../tokens/shadows' as *;
-@use '../utilities/responsive' as *;
-@use '../mixins/animations' as *;
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/shadows';
+@import 'src/styles/utilities/responsive';
+@import 'src/styles/mixins/animations';
 
 // ============================================================
 // CARD CONTAINER

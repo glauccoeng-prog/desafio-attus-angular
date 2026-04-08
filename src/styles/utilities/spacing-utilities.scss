@@ -3,7 +3,7 @@
 // Classes reutilizáveis para padding, margin e gap
 // ============================================================
 
-@use '../tokens/spacing' as *;
+@import '../tokens/spacing';
 
 // ============================================================
 // MARGIN UTILITIES

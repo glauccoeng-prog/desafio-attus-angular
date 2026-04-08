@@ -3,10 +3,10 @@
 // Modal de criação/edição de usuário com formulário reativo
 // ============================================================
 
-@use '../tokens/spacing' as *;
-@use '../tokens/shadows' as *;
-@use '../utilities/responsive' as *;
-@use '../mixins/animations' as *;
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/shadows';
+@import 'src/styles/utilities/responsive';
+@import 'src/styles/mixins/animations';
 
 // ============================================================
 // USER FORM

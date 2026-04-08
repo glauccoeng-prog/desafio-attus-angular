@@ -2,10 +2,7 @@
 // BUTTON MIXINS
 // Estilos reutilizáveis para botões
 // ============================================================
-
-@use '../tokens/colors' as *;
-@use '../tokens/spacing' as *;
-@use '../tokens/shadows' as *;
+// Tokens são importados globalmente via src/styles.scss
 
 // MIXIN: Botão com estado hover elevado
 @mixin btn-hover-elevated {

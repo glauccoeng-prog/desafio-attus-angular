@@ -3,8 +3,8 @@
 // Modal de confirmação com ícone, título, mensagem e ações
 // ============================================================
 
-@use '../tokens/spacing' as *;
-@use '../tokens/colors' as *;
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/colors';
 
 // ============================================================
 // DIALOG CONTAINER

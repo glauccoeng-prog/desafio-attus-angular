@@ -4,13 +4,13 @@
 // ============================================================
 
 // Responsive breakpoints and utilities
-@import './responsive';
+@import 'src/styles/utilities/responsive';
 
 // Spacing utility classes
-@import './spacing-utilities';
+@import 'src/styles/utilities/spacing-utilities';
 
 // Typography utility classes
-@import './typography-utilities';
+@import 'src/styles/utilities/typography-utilities';
 
 // ============================================================
 // EXPORTS

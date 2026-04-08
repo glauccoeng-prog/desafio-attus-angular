@@ -2,10 +2,7 @@
 // CARD MIXINS
 // Estilos reutilizáveis para cards e containers
 // ============================================================
-
-@use '../tokens/colors' as *;
-@use '../tokens/spacing' as *;
-@use '../tokens/shadows' as *;
+// Todos os tokens e variáveis são importadas globalmente via src/styles.scss
 
 // MIXIN: Card base
 @mixin card-base {
