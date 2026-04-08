@@ -18,6 +18,7 @@ Uma aplicação completa de gerenciamento de usuários com CRUD, busca com debou
 
 - [Visão Geral](#-visão-geral)
 - [Tecnologias](#-tecnologias-e-ferramentas)
+- [Sistema de Design (Design Tokens)](#-sistema-de-design-design-tokens)
 - [Funcionalidades](#-funcionalidades-implementadas)
 - [Arquitetura](#-arquitetura-do-projeto)
 - [Fluxo Visual](#-fluxo-visual-completo)
@@ -96,6 +97,219 @@ Este projeto é uma **avaliação técnica** para a empresa Attus, demonstrando 
 | Tecnologia                                            | Descrição                              |
 | ----------------------------------------------------- | -------------------------------------- |
 | [GitHub Actions](https://github.com/features/actions) | Pipeline: lint → format → test → build |
+
+---
+
+## 🎨 Sistema de Design (Design Tokens)
+
+O projeto implementa um **sistema de design tokens modular e escalável** que centraliza todas as decisões de estilo, permitindo manutenção fácil e mudanças globais com impacto mínimo.
+
+### Arquitetura de Estilos
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                    SISTEMA DE DESIGN TOKENS                      │
+├──────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────┐   ┌──────────────┐   ┌──────────────────┐    │
+│  │ 🎨 TOKENS    │   │ 🔨 MIXINS    │   │ 🛠️ UTILITIES     │    │
+│  │              │   │              │   │                  │    │
+│  │ Colors       │───│ btn-primary  │───│ spacing-utils    │    │
+│  │ Spacing      │   │ card-base    │   │ typography-utils │    │
+│  │ Typography   │   │ input-base   │   │ responsive       │    │
+│  │ Shadows      │   │ animations   │   │                  │    │
+│  └──────────────┘   └──────────────┘   └──────────────────┘    │
+│         ▲                   ▲                     ▲               │
+│         └───────────────────┴─────────────────────┘               │
+│                        src/styles.scss                           │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────┐    │
+│  │  Importados globalmente em cada componente SCSS        │    │
+│  │  Component SCSS tem acesso a:                          │    │
+│  │  - Variáveis ($color-primary, $spacing-lg, etc)       │    │
+│  │  - Mixins (@mixin card-base, @mixin animate-fade-in)  │    │
+│  │  - Classes utilitárias (.gap-md, .text-bold)          │    │
+│  └────────────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+### Estrutura de Pastas SCSS
+
+```
+src/styles/
+├── _variables.scss              # 🔑 Arquivo central (importa tudo)
+├── index.scss                   # 📄 Importa tokens, mixins, utilities
+├── tokens/                       # 🎨 TOKENS (Design Variables)
+│   ├── colors.scss              # 50+ variáveis de cores
+│   ├── spacing.scss             # Escala 12 níveis (xs → 8xl)
+│   ├── typography.scss          # Font sizes, weights, presets
+│   ├── shadows.scss             # 6 níveis de elevação + especiais
+│   └── index.scss               # Importa todos os tokens
+├── mixins/                       # 🔨 MIXINS (Padrões Reutilizáveis)
+│   ├── buttons.scss             # @mixin btn-primary, btn-secondary, etc
+│   ├── cards.scss               # @mixin card-base, card-interactive, etc
+│   ├── forms.scss               # @mixin input-base, form-group, etc
+│   ├── animations.scss          # @keyframes + @mixin animate-*
+│   └── index.scss               # Importa todos os mixins
+├── utilities/                    # 🛠️ UTILITIES (Classes Prontas)
+│   ├── responsive.scss          # Breakpoints + mixins responsive
+│   ├── spacing-utilities.scss   # Classes .m-*, .p-*, .gap-*, etc
+│   ├── typography-utilities.scss # Classes .text-*, .font-*, etc
+│   └── index.scss               # Importa todos os utilities
+├── components/                   # 📦 COMPONENTES (Component-Specific)
+│   ├── user-card.scss
+│   ├── user-list.scss
+│   ├── user-filter.scss
+│   ├── user-modal.scss
+│   ├── confirm-dialog.scss
+│   └── index.scss
+└── layouts/                      # 📐 LAYOUTS
+    ├── shell.scss
+    └── index.scss
+```
+
+### Tokens Principais
+
+#### 🎨 Cores
+
+| Token                  | Valor   | Uso                                    |
+| ---------------------- | ------- | -------------------------------------- |
+| `$color-primary`       | #1976d2 | Botões CTA, ações principais           |
+| `$color-error`         | #f44336 | Erros, exclusões, ações destrutivas    |
+| `$color-success`       | #4caf50 | Confirmações, status positivo          |
+| `$color-warning`       | #ff9800 | Alertas, avisos                        |
+| `$color-surface`       | #ffffff | Backgrounds principais                 |
+| `$color-on-surface`    | #212121 | Texto primário                         |
+| `$color-on-surface-variant` | #757575 | Texto secundário, hints               |
+
+#### 📏 Espaçamento
+
+| Token           | Valor | Uso                                  |
+| --------------- | ----- | ------------------------------------ |
+| `$spacing-xs`   | 2px   | Micro espaçamentos                   |
+| `$spacing-sm`   | 4px   | Gaps entre ícones, compacto          |
+| `$spacing-md`   | 8px   | Gaps normais, spacing padrão         |
+| `$spacing-lg`   | 12px  | Padding de cards, gaps médios        |
+| `$spacing-xl`   | 16px  | Padding principal, gaps maiores      |
+| `$spacing-3xl`  | 24px  | Padding de páginas, headers          |
+| `$spacing-8xl`  | 64px  | Loading states, empty states         |
+
+#### 🌑 Sombras (Elevação)
+
+| Token             | Sombra CSS                                    | Uso                               |
+| ----------------- | --------------------------------------------- | --------------------------------- |
+| `$shadow-level-0` | none                                          | Flat, sem elevação                |
+| `$shadow-level-1` | 0 2px 4px rgba(0, 0, 0, 0.1)                  | Buttons hover, cards leves        |
+| `$shadow-level-2` | 0 4px 8px rgba(0, 0, 0, 0.12)                 | Cards normais, dropdowns          |
+| `$shadow-level-3` | 0 8px 16px rgba(0, 0, 0, 0.15)                | Modals, cards ao hover            |
+| `$shadow-level-4` | 0 12px 24px rgba(0, 0, 0, 0.18)               | Floating buttons, toasts          |
+| `$shadow-level-5` | 0 16px 32px rgba(0, 0, 0, 0.2)                | Overlays, dialogs importantes     |
+
+### Mixins (Padrões Reutilizáveis)
+
+#### Buttons
+
+```scss
+@mixin btn-primary {
+  background-color: $color-primary;
+  color: white;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  // ... hover, focus, disabled
+}
+
+@mixin btn-destructive {
+  background-color: $color-error;
+  // ... hover, focus
+}
+
+@mixin btn-hover-elevated {
+  transition: all 0.2s ease;
+  &:hover {
+    box-shadow: $shadow-level-3;
+    transform: translateY(-2px);
+  }
+}
+```
+
+#### Cards
+
+```scss
+@mixin card-base {
+  background-color: $color-surface;
+  border-radius: 8px;
+  padding: $card-padding;
+  box-shadow: $shadow-level-1;
+  transition: all 0.2s ease;
+}
+
+@mixin card-interactive {
+  @include card-base;
+  cursor: pointer;
+  &:hover {
+    box-shadow: $shadow-level-3;
+    transform: translateY(-2px);
+  }
+}
+```
+
+### Utilities (Classes Prontas)
+
+```scss
+// Spacing
+.m-lg   { margin: 12px; }
+.p-xl   { padding: 16px; }
+.gap-md { gap: 8px; }
+
+// Typography
+.text-lg     { font-size: 16px; }
+.font-bold   { font-weight: 700; }
+.heading-1   { font: var(--mat-sys-headline-large); }
+
+// Responsive
+.hide-mobile { @media (max-width: 599px) { display: none !important; } }
+.show-tablet-and-up { @media (min-width: 600px) { display: block; } }
+```
+
+### Como Usar nos Componentes
+
+#### Exemplo: Componente user-card.component.scss
+
+```scss
+// Os tokens, mixins e utilities estão globalmente disponíveis
+// (importados via src/styles.scss)
+
+.user-card {
+  @include card-interactive;  // Mixin: card base + hover effect
+
+  &:hover {
+    box-shadow: $shadow-level-3;  // Token: sombra de elevação
+    transform: translateY(-2px);   // Animação padrão
+  }
+}
+
+.user-card__avatar {
+  width: 40px;
+  padding: $spacing-lg;           // Token: espaçamento
+  background-color: $color-primary-container;  // Token: cor
+  gap: $spacing-md;               // Token: espaçamento
+  animation: fadeInTop 0.3s ease-out;  // Keyframe do mixin animations
+}
+```
+
+### Benefícios
+
+| Benefício                      | Antes                              | Depois                                    |
+| ------------------------------ | ---------------------------------- | ----------------------------------------- |
+| **Mudança de cor global**       | Procurar em 5+ arquivos            | Editar 1 variável em `colors.scss`        |
+| **Consistência de espaçamento** | Valores hardcoded variados         | Escala única centralizada                 |
+| **Código reutilizável**        | Estilos repetidos em componentes   | Mixins e utilities prontas                |
+| **Responsividade**             | Media queries inline               | Breakpoints centralizados + mixins        |
+| **Manutenibilidade**           | Estilo espalhado em 6 arquivos     | Estrutura modular e organizada            |
+| **Escalabilidade**             | Difícil adicionar novos componentes | Padrões claros para novos estilos         |
+
+### Documentação Completa
+
+Para detalhes completos sobre cores, espaçamento, tipografia, animações e como adicionar novos tokens, consulte **[DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)**.
 
 ---
 
@@ -290,15 +504,19 @@ desafio-attus-angular/
         │       ├── 📁 components/
         │       │   ├── 📁 user-card/
         │       │   │   ├── 📄 user-card.component.ts       # Card com avatar e ações
+        │       │   │   ├── 📄 user-card.component.scss     # Estilos modulares
         │       │   │   └── 📄 user-card.component.spec.ts  # 2 testes
         │       │   ├── 📁 user-filter/
         │       │   │   ├── 📄 user-filter.component.ts     # Campo de busca
+        │       │   │   ├── 📄 user-filter.component.scss   # Estilos modulares
         │       │   │   └── 📄 user-filter.component.spec.ts # 3 testes
         │       │   ├── 📁 user-list/
-        │       │   │   ├── 📄 user-list.component.ts       # Página principal (353 linhas)
+        │       │   │   ├── 📄 user-list.component.ts       # Página principal (316 linhas)
+        │       │   │   ├── 📄 user-list.component.scss     # Estilos modulares (200+ linhas)
         │       │   │   └── 📄 user-list.component.spec.ts  # 6 testes
         │       │   └── 📁 user-modal/
         │       │       ├── 📄 user-modal.component.ts      # Modal CRUD + mascaras
+        │       │       ├── 📄 user-modal.component.scss    # Estilos modulares
         │       │       └── 📄 user-modal.component.spec.ts # 11 testes
         │       ├── 📁 models/
         │       │   ├── 📄 user.model.ts       # User, DTO, Pagina<T>, PaginaParams
@@ -318,10 +536,12 @@ desafio-attus-angular/
             ├── 📁 components/
             │   └── 📁 confirm-dialog/
             │       ├── 📄 confirm-dialog.component.ts      # Modal de confirmação
+            │       ├── 📄 confirm-dialog.component.scss    # Estilos modulares
             │       └── 📄 confirm-dialog.component.spec.ts # 3 testes
             ├── 📁 layout/
             │   └── 📁 shell/
             │       ├── 📄 shell.component.ts       # Layout Sidenav responsiva
+            │       ├── 📄 shell.component.scss    # Estilos modulares
             │       └── 📄 shell.component.spec.ts  # 4 testes
             └── 📁 utils/
                 ├── 📄 filtrar-e-paginar.ts      # Função genérica <T>
@@ -580,6 +800,14 @@ npm run build
 5. **Standalone Components** — Todos os componentes são standalone, sem NgModules, seguindo a arquitetura recomendada do Angular 21.
 
 6. **Imutabilidade** — `readonly` em todas as interfaces, `Object.freeze()` no paginator, arrays `readonly T[]`.
+
+7. **Sistema de Design com Tokens SCSS** — Implementei uma arquitetura modular de estilos com:
+   - **Tokens** — Variáveis centralizadas (cores, spacing, tipografia, sombras)
+   - **Mixins** — Padrões reutilizáveis (buttons, cards, forms, animations)
+   - **Utilities** — Classes prontas para spacing, tipografia e responsividade
+   - **Component SCSS** — Estilos separados por componente (não inline)
+   - **Benefício**: Alterar uma cor globalmente = editar 1 variável. Manutenção facilitada e escalabilidade melhorada.
+   - **Documentação**: Consulte [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) para guia completo.
 
 ---
 
