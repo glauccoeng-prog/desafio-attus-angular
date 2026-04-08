@@ -3,11 +3,6 @@
 // Card individual de usuário com avatar, nome, email, CPF e ações
 // ============================================================
 
-@import 'src/styles/tokens/spacing';
-@import 'src/styles/tokens/shadows';
-@import 'src/styles/utilities/responsive';
-@import 'src/styles/mixins/animations';
-
 // ============================================================
 // CARD CONTAINER
 // ============================================================
@@ -17,7 +12,7 @@
   border-radius: 8px;
 
   &:hover {
-    box-shadow: $shadow-level-3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }
 
@@ -34,8 +29,8 @@
 .user-card__content {
   display: flex;
   align-items: center;
-  gap: $spacing-xl;
-  padding: $spacing-lg $spacing-xl;
+  gap: 16px;
+  padding: 12px 16px;
 }
 
 // ============================================================
@@ -55,10 +50,10 @@
   flex-shrink: 0;
   font-weight: 500;
   transition: all 0.2s ease;
-  box-shadow: $shadow-level-1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .user-card:hover & {
-    box-shadow: $shadow-level-2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
     transform: scale(1.08);
   }
 }
@@ -96,7 +91,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: $spacing-xs;
+  margin-top: 2px;
   transition: color 0.2s ease;
 
   .user-card:hover & {
@@ -114,7 +109,7 @@
   flex-shrink: 0;
   display: none;
 
-  @include tablet-and-up {
+  @media (min-width: 640px) {
     display: block;
   }
 }
@@ -126,7 +121,7 @@
 .user-card__actions {
   flex-shrink: 0;
   display: flex;
-  gap: $spacing-sm;
+  gap: 4px;
   opacity: 0.7;
   transition: opacity 0.2s ease;
 
@@ -152,6 +147,6 @@
   color: var(--mat-sys-error);
 
   &:hover {
-    color: darken(var(--mat-sys-error), 10%);
+    color: #c62828;
   }
 }

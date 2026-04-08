@@ -3,10 +3,6 @@
 // Layout principal com sidenav + content area
 // ============================================================
 
-@import 'src/styles/tokens/spacing';
-@import 'src/styles/tokens/typography';
-@import 'src/styles/tokens/colors';
-
 // ============================================================
 // SHELL CONTAINER
 // ============================================================
@@ -35,20 +31,20 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: $spacing-3xl $spacing-xl $spacing-xl;
+  padding: 24px 16px 16px;
 }
 
 // Brand section (logo + title)
 .sidenav__brand {
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: 2px;
 }
 
 // Sidenav title
 .sidenav__title {
-  font-size: $font-size-2xl;
-  font-weight: $font-weight-medium;
+  font-size: 22px;
+  font-weight: 500;
   color: var(--mat-sys-primary);
   line-height: 1.3;
 }
@@ -63,7 +59,7 @@
 .sidenav__item--active {
   background-color: var(--mat-sys-secondary-container) !important;
   border-radius: 28px;
-  margin: 0 $spacing-lg;
+  margin: 0 12px;
 }
 
 // ============================================================

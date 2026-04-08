@@ -3,16 +3,13 @@
 // Modal de confirmação com ícone, título, mensagem e ações
 // ============================================================
 
-@import 'src/styles/tokens/spacing';
-@import 'src/styles/tokens/colors';
-
 // ============================================================
 // DIALOG CONTAINER
 // ============================================================
 
 .confirm-dialog {
   text-align: center;
-  padding: $spacing-md 0 0;
+  padding: 8px 0 0;
 }
 
 // ============================================================
@@ -23,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto $spacing-lg;
+  margin: 0 auto 12px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -44,7 +41,7 @@
 .confirm-dialog__title {
   font: var(--mat-sys-title-large);
   color: var(--mat-sys-on-surface);
-  margin: 0 0 $spacing-md;
+  margin: 0 0 8px;
 }
 
 // ============================================================
@@ -62,11 +59,11 @@
 // ============================================================
 
 .confirm-dialog__actions {
-  padding-top: $spacing-xl;
+  padding-top: 16px;
 }
 
 // Delete button styling
 .confirm-dialog__delete-btn {
-  background-color: $color-error !important;
+  background-color: #f44336 !important;
   color: white !important;
 }
