@@ -1,0 +1,131 @@
+// ============================================================
+// CARD MIXINS
+// Estilos reutilizáveis para cards e containers
+// ============================================================
+
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/shadows' as *;
+
+// MIXIN: Card base
+@mixin card-base {
+  background-color: $color-surface;
+  border-radius: 8px;
+  padding: $card-padding;
+  box-shadow: $shadow-level-1;
+  transition: all 0.2s ease;
+}
+
+// MIXIN: Card com elevation hover
+@mixin card-elevation-hover {
+  box-shadow: $shadow-level-3;
+  transform: translateY(-2px);
+}
+
+// MIXIN: Card interativa (com hover)
+@mixin card-interactive {
+  @include card-base;
+
+  cursor: pointer;
+
+  &:hover {
+    @include card-elevation-hover;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// MIXIN: Card compacta
+@mixin card-compact {
+  background-color: $color-surface;
+  border-radius: 8px;
+  padding: $card-padding-compact;
+  box-shadow: $shadow-level-1;
+  transition: all 0.2s ease;
+}
+
+// MIXIN: Card com borda
+@mixin card-bordered {
+  @include card-base;
+
+  border: 1px solid $color-border;
+}
+
+// MIXIN: Card com fundo alternativo
+@mixin card-alt-background {
+  @include card-base;
+
+  background-color: $color-surface-light;
+}
+
+// MIXIN: Card com status (sucesso, erro, aviso)
+@mixin card-status($status-color) {
+  @include card-base;
+
+  border-left: 4px solid $status-color;
+}
+
+// MIXIN: Container de card (útil para layouts grid)
+@mixin card-container {
+  display: flex;
+  flex-direction: column;
+  gap: $card-gap;
+}
+
+// MIXIN: Card com header
+@mixin card-with-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  > .card-header {
+    padding: $card-padding;
+    border-bottom: 1px solid $color-border;
+  }
+
+  > .card-content {
+    padding: $card-padding;
+    flex: 1;
+  }
+
+  > .card-footer {
+    padding: $card-padding;
+    border-top: 1px solid $color-border;
+    background-color: $color-surface-light;
+  }
+}
+
+// MIXIN: Card com actions
+@mixin card-actions {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: flex-end;
+
+  button {
+    flex: 0;
+  }
+}
+
+// MIXIN: Card com avatar/icon
+@mixin card-with-icon($icon-size: 40px) {
+  display: flex;
+  gap: $spacing-xl;
+  align-items: flex-start;
+
+  .card-icon {
+    width: $icon-size;
+    height: $icon-size;
+    min-width: $icon-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .card-content {
+    flex: 1;
+  }
+}

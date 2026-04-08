@@ -1,0 +1,22 @@
+// ============================================================
+// MIXINS INDEX
+// Arquivo central que importa e exporta todos os mixins
+// ============================================================
+
+// Buttons
+@import './buttons';
+
+// Cards
+@import './cards';
+
+// Forms
+@import './forms';
+
+// Animations
+@import './animations';
+
+// ============================================================
+// EXPORTS
+// Todos os mixins estão disponíveis globalmente após este
+// arquivo ser importado com @use ou @import
+// ============================================================

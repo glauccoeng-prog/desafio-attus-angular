@@ -1,0 +1,19 @@
+// ============================================================
+// COMPONENTS INDEX
+// Importa todos os estilos de componentes e layouts
+// ============================================================
+
+// Layout styles
+@import '../layouts/index';
+
+// Component styles
+@import './user-card';
+@import './user-list';
+@import './user-filter';
+@import './user-modal';
+@import './confirm-dialog';
+
+// ============================================================
+// EXPORTS
+// Todos os estilos de componentes estão disponíveis
+// ============================================================

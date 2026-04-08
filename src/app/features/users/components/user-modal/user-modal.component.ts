@@ -32,6 +32,7 @@ export interface UserModalData {
     MatIconModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./user-modal.component.scss'],
   template: `
     <h2 mat-dialog-title>
       {{ data.user ? 'Editar usuário' : 'Adicionar novo usuário' }}
@@ -135,39 +136,6 @@ export interface UserModalData {
         SALVAR
       </button>
     </mat-dialog-actions>
-  `,
-  styles: `
-    .user-form {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 400px;
-      padding-top: 8px;
-
-      @media (max-width: 640px) {
-        min-width: unset;
-      }
-    }
-
-    .full-width {
-      width: 100%;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 120px;
-      gap: 12px;
-
-      @media (max-width: 640px) {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-hint {
-      font: var(--mat-sys-body-small);
-      color: var(--mat-sys-tertiary);
-      margin: 0;
-    }
   `,
 })
 export class UserModalComponent {

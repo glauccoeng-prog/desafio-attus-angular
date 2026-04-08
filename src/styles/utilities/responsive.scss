@@ -1,0 +1,198 @@
+// ============================================================
+// RESPONSIVE BREAKPOINTS & UTILITIES
+// Sistema de breakpoints centralizado
+// ============================================================
+
+// ============================================================
+// BREAKPOINT VARIABLES
+// ============================================================
+
+$breakpoint-xs: 0px;           // Mobile
+$breakpoint-sm: 600px;         // Tablet portrait
+$breakpoint-md: 900px;         // Tablet landscape
+$breakpoint-lg: 1200px;        // Desktop
+$breakpoint-xl: 1440px;        // Large desktop
+$breakpoint-2xl: 1920px;       // Extra large desktop
+
+// ============================================================
+// BREAKPOINT MIXINS
+// ============================================================
+
+// MIXIN: Mobile only (xs)
+@mixin mobile-only {
+  @media (max-width: #{$breakpoint-sm - 1}) {
+    @content;
+  }
+}
+
+// MIXIN: Mobile and up (xs and above)
+@mixin mobile-and-up {
+  @media (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+// MIXIN: Tablet and up (sm and above)
+@mixin tablet-and-up {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+// MIXIN: Tablet portrait only
+@mixin tablet-portrait {
+  @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1}) {
+    @content;
+  }
+}
+
+// MIXIN: Tablet landscape and up (md and above)
+@mixin tablet-landscape-and-up {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+// MIXIN: Desktop and up (lg and above)
+@mixin desktop-and-up {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// MIXIN: Large desktop and up (xl and above)
+@mixin large-desktop-and-up {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+// MIXIN: Extra large desktop and up (2xl and above)
+@mixin extra-large-desktop-and-up {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
+
+// MIXIN: Custom breakpoint (min-width)
+@mixin breakpoint-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// MIXIN: Custom breakpoint (max-width)
+@mixin breakpoint-down($breakpoint) {
+  @media (max-width: #{$breakpoint - 1}) {
+    @content;
+  }
+}
+
+// MIXIN: Custom range
+@mixin breakpoint-between($min, $max) {
+  @media (min-width: $min) and (max-width: #{$max - 1}) {
+    @content;
+  }
+}
+
+// ============================================================
+// RESPONSIVE UTILITIES
+// ============================================================
+
+// MIXIN: Hide element on mobile
+@mixin hide-mobile {
+  @include mobile-only {
+    display: none !important;
+  }
+}
+
+// MIXIN: Show element on mobile only
+@mixin show-mobile-only {
+  @include tablet-and-up {
+    display: none !important;
+  }
+}
+
+// MIXIN: Hide element on tablet and up
+@mixin hide-tablet-and-up {
+  @include tablet-and-up {
+    display: none !important;
+  }
+}
+
+// MIXIN: Show element on tablet and up
+@mixin show-tablet-and-up {
+  @include mobile-only {
+    display: none !important;
+  }
+}
+
+// MIXIN: Hide element on desktop
+@mixin hide-desktop {
+  @include desktop-and-up {
+    display: none !important;
+  }
+}
+
+// MIXIN: Show element on desktop only
+@mixin show-desktop-only {
+  @include mobile-and-up {
+    @include mobile-only {
+      display: none !important;
+    }
+
+    @include tablet-and-up {
+      @include tablet-portrait {
+        display: none !important;
+      }
+    }
+  }
+}
+
+// MIXIN: Flexbox responsive columns
+@mixin responsive-columns($columns-desktop, $columns-tablet: 2, $columns-mobile: 1) {
+  display: grid;
+  grid-template-columns: repeat($columns-mobile, 1fr);
+
+  @include tablet-and-up {
+    grid-template-columns: repeat($columns-tablet, 1fr);
+  }
+
+  @include desktop-and-up {
+    grid-template-columns: repeat($columns-desktop, 1fr);
+  }
+}
+
+// MIXIN: Responsive padding
+@mixin responsive-padding($mobile, $tablet: null, $desktop: null) {
+  padding: $mobile;
+
+  @if $tablet != null {
+    @include tablet-and-up {
+      padding: $tablet;
+    }
+  }
+
+  @if $desktop != null {
+    @include desktop-and-up {
+      padding: $desktop;
+    }
+  }
+}
+
+// MIXIN: Responsive gap
+@mixin responsive-gap($mobile, $tablet: null, $desktop: null) {
+  gap: $mobile;
+
+  @if $tablet != null {
+    @include tablet-and-up {
+      gap: $tablet;
+    }
+  }
+
+  @if $desktop != null {
+    @include desktop-and-up {
+      gap: $desktop;
+    }
+  }
+}

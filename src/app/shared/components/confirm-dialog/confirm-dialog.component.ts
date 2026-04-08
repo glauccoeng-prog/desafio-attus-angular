@@ -19,6 +19,7 @@ export interface ConfirmDialogData {
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./confirm-dialog.component.scss'],
   template: `
     <div class="confirm-dialog">
       <div class="confirm-dialog__icon">
@@ -45,51 +46,6 @@ export interface ConfirmDialogData {
         </button>
       </mat-dialog-actions>
     </div>
-  `,
-  styles: `
-    .confirm-dialog {
-      text-align: center;
-      padding: 8px 0 0;
-    }
-
-    .confirm-dialog__icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background-color: var(--mat-sys-error-container);
-      color: var(--mat-sys-error);
-
-      mat-icon {
-        font-size: 32px;
-        width: 32px;
-        height: 32px;
-      }
-    }
-
-    .confirm-dialog__title {
-      font: var(--mat-sys-title-large);
-      color: var(--mat-sys-on-surface);
-      margin: 0 0 8px;
-    }
-
-    .confirm-dialog__message {
-      font: var(--mat-sys-body-medium);
-      color: var(--mat-sys-on-surface-variant);
-      margin: 0;
-    }
-
-    .confirm-dialog__actions {
-      padding-top: 16px;
-    }
-
-    .confirm-dialog__delete-btn {
-      background-color: #f44336 !important;
-      color: #fff !important;
-    }
   `,
 })
 export class ConfirmDialogComponent {

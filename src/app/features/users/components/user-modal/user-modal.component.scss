@@ -1,0 +1,55 @@
+// ============================================================
+// USER MODAL COMPONENT STYLES
+// Modal de criação/edição de usuário com formulário reativo
+// ============================================================
+
+@use '../tokens/spacing' as *;
+@use '../utilities/responsive' as *;
+
+// ============================================================
+// USER FORM
+// ============================================================
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  min-width: 400px;
+  padding-top: $spacing-md;
+
+  @include mobile-only {
+    min-width: unset;
+  }
+}
+
+// ============================================================
+// FORM FIELDS
+// ============================================================
+
+.full-width {
+  width: 100%;
+}
+
+// ============================================================
+// FORM ROW (CPF, TELEFONE, TIPO)
+// ============================================================
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px;
+  gap: $spacing-xl;
+
+  @include mobile-only {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// FORM HINT TEXT
+// ============================================================
+
+.form-hint {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-tertiary);
+  margin: 0;
+}

@@ -1,0 +1,141 @@
+// ============================================================
+// TYPOGRAPHY TOKENS
+// Escala de tipografia baseada em Material 3
+// ============================================================
+
+// FONT FAMILY
+$font-family-base: 'Roboto', sans-serif;
+$font-family-monospace: 'Roboto Mono', monospace;
+
+// FONT SIZES
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-size-xl: 18px;
+$font-size-2xl: 20px;
+$font-size-3xl: 24px;
+$font-size-4xl: 28px;
+$font-size-5xl: 32px;
+$font-size-6xl: 40px;
+$font-size-7xl: 48px;
+
+// FONT WEIGHTS
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+// LINE HEIGHTS
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+$line-height-loose: 2;
+
+// LETTER SPACING
+$letter-spacing-tight: -0.5px;
+$letter-spacing-normal: 0px;
+$letter-spacing-relaxed: 0.5px;
+$letter-spacing-loose: 1px;
+
+// ============================================================
+// TYPOGRAPHY PRESETS (Material 3 system)
+// ============================================================
+
+// Headings
+$heading-1: (
+  'font-size': $font-size-5xl,
+  'font-weight': $font-weight-bold,
+  'line-height': $line-height-tight,
+  'letter-spacing': $letter-spacing-tight,
+);
+
+$heading-2: (
+  'font-size': $font-size-4xl,
+  'font-weight': $font-weight-bold,
+  'line-height': $line-height-tight,
+  'letter-spacing': $letter-spacing-tight,
+);
+
+$heading-3: (
+  'font-size': $font-size-3xl,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-tight,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+// Titles (Material 3)
+$title-large: (
+  'font-size': $font-size-2xl,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+$title-medium: (
+  'font-size': $font-size-lg,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+$title-small: (
+  'font-size': $font-size-md,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+// Body text
+$body-large: (
+  'font-size': $font-size-lg,
+  'font-weight': $font-weight-regular,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+$body-medium: (
+  'font-size': $font-size-md,
+  'font-weight': $font-weight-regular,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+$body-small: (
+  'font-size': $font-size-sm,
+  'font-weight': $font-weight-regular,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);
+
+// Labels
+$label-large: (
+  'font-size': $font-size-md,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-relaxed,
+);
+
+$label-medium: (
+  'font-size': $font-size-sm,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-relaxed,
+);
+
+$label-small: (
+  'font-size': $font-size-xs,
+  'font-weight': $font-weight-semibold,
+  'line-height': $line-height-tight,
+  'letter-spacing': $letter-spacing-loose,
+);
+
+// Caption / Helper text
+$caption-text: (
+  'font-size': $font-size-xs,
+  'font-weight': $font-weight-regular,
+  'line-height': $line-height-normal,
+  'letter-spacing': $letter-spacing-normal,
+);

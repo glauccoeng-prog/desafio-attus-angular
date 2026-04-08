@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./user-filter.component.scss'],
   template: `
     <mat-form-field appearance="outline" class="filter-field">
       <mat-icon matPrefix>search</mat-icon>
@@ -28,25 +29,6 @@ import { MatIconModule } from '@angular/material/icon';
         <mat-icon matSuffix class="spinning">sync</mat-icon>
       }
     </mat-form-field>
-  `,
-  styles: `
-    .filter-field {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .spinning {
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
   `,
 })
 export class UserFilterComponent {

@@ -1,0 +1,199 @@
+// ============================================================
+// USER LIST COMPONENT STYLES
+// Página principal - Listagem de usuários com header, filtro, paginação e FAB
+// ============================================================
+
+@use '../tokens/spacing' as *;
+@use '../tokens/colors' as *;
+@use '../utilities/responsive' as *;
+
+// ============================================================
+// HOST CONTAINER
+// ============================================================
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--mat-sys-surface-container-lowest);
+}
+
+// ============================================================
+// HEADER
+// ============================================================
+
+.header {
+  background-color: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  padding: $spacing-lg $spacing-3xl;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  @include mobile-only {
+    padding: $spacing-lg $spacing-sm $spacing-lg $spacing-xs;
+  }
+}
+
+// Menu button (mobile)
+.header__menu-btn {
+  flex-shrink: 0;
+
+  @include desktop-and-up {
+    display: none;
+  }
+}
+
+// Page title in header
+.header__title {
+  font: var(--mat-sys-title-medium);
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0;
+  white-space: nowrap;
+}
+
+// ============================================================
+// MAIN CONTENT AREA
+// ============================================================
+
+.content {
+  flex: 1;
+  padding: $spacing-3xl;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  @include mobile-only {
+    padding: $spacing-xl;
+  }
+}
+
+// Subtitle in content
+.content__subtitle {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 $spacing-xl;
+}
+
+// ============================================================
+// ERROR STATE
+// ============================================================
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-lg $spacing-xl;
+  background-color: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+  border-radius: 12px;
+  margin-bottom: $spacing-xl;
+
+  mat-icon {
+    flex-shrink: 0;
+  }
+
+  span {
+    flex: 1;
+    font: var(--mat-sys-body-small);
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+// ============================================================
+// LOADING STATE
+// ============================================================
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-8xl 0;
+  gap: $spacing-xl;
+  color: var(--mat-sys-on-surface-variant);
+
+  p {
+    font: var(--mat-sys-body-medium);
+    margin: 0;
+  }
+}
+
+// ============================================================
+// EMPTY STATE
+// ============================================================
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-8xl 0;
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    font: var(--mat-sys-body-medium);
+    margin: 0;
+  }
+}
+
+// ============================================================
+// USER LIST
+// ============================================================
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// ============================================================
+// PAGINATION
+// ============================================================
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding-top: $spacing-3xl;
+  flex-wrap: wrap;
+}
+
+// Inactive pagination button
+.pagination__btn--inactive {
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+// Pagination info text
+.pagination__info {
+  margin-left: $spacing-lg;
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+// ============================================================
+// FAB (Floating Action Button)
+// ============================================================
+
+.fab {
+  position: fixed;
+  bottom: $spacing-3xl;
+  right: $spacing-3xl;
+  z-index: 10;
+  background-color: $color-error !important;
+  color: white !important;
+}

@@ -1,0 +1,192 @@
+// ============================================================
+// FORM MIXINS
+// Estilos reutilizáveis para formulários e inputs
+// ============================================================
+
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/shadows' as *;
+@use '../tokens/typography' as *;
+
+// MIXIN: Input base
+@mixin input-base {
+  width: 100%;
+  padding: $spacing-lg $spacing-xl;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  font-family: $font-family-base;
+  font-size: $font-size-md;
+  color: $color-on-surface;
+  background-color: $color-surface;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+
+  &:disabled {
+    background-color: $color-surface-light;
+    color: $color-disabled;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $color-on-surface-variant;
+  }
+}
+
+// MIXIN: Input com erro
+@mixin input-error {
+  border-color: $color-error;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-error, 0.1);
+  }
+}
+
+// MIXIN: Input com sucesso
+@mixin input-success {
+  border-color: $color-success;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+  }
+}
+
+// MIXIN: Input com aviso
+@mixin input-warning {
+  border-color: $color-warning;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-warning, 0.1);
+  }
+}
+
+// MIXIN: Select/Dropdown
+@mixin select-base {
+  @include input-base;
+
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23212121' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-lg center;
+  padding-right: $spacing-3xl;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+}
+
+// MIXIN: Textarea
+@mixin textarea-base {
+  @include input-base;
+
+  resize: vertical;
+  min-height: 120px;
+  font-family: $font-family-monospace;
+}
+
+// MIXIN: Checkbox/Radio
+@mixin checkbox-base {
+  cursor: pointer;
+  accent-color: $color-primary;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// MIXIN: Form group (field container)
+@mixin form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $form-field-gap;
+  margin-bottom: $form-section-gap;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// MIXIN: Form label
+@mixin form-label {
+  display: block;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-md;
+  color: $color-on-surface;
+  margin-bottom: $spacing-sm;
+
+  &.required::after {
+    content: ' *';
+    color: $color-error;
+  }
+}
+
+// MIXIN: Form hint/helper text
+@mixin form-hint {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-on-surface-variant;
+  margin-top: $spacing-sm;
+}
+
+// MIXIN: Form error message
+@mixin form-error {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-error;
+  margin-top: $spacing-sm;
+
+  &::before {
+    content: '⚠ ';
+    margin-right: $spacing-sm;
+  }
+}
+
+// MIXIN: Form success message
+@mixin form-success {
+  display: block;
+  font-size: $font-size-xs;
+  color: $color-success;
+  margin-top: $spacing-sm;
+
+  &::before {
+    content: '✓ ';
+    margin-right: $spacing-sm;
+  }
+}
+
+// MIXIN: Form container (wrapper)
+@mixin form-container {
+  display: flex;
+  flex-direction: column;
+  gap: $form-section-gap;
+  padding: $modal-padding;
+}
+
+// MIXIN: Form actions (footer com botões)
+@mixin form-actions {
+  display: flex;
+  gap: $spacing-lg;
+  justify-content: flex-end;
+  margin-top: $form-section-gap;
+  padding-top: $form-section-gap;
+  border-top: 1px solid $color-border;
+}
+
+// MIXIN: Form row (múltiplos campos lado a lado)
+@mixin form-row($columns: 2) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $spacing-xl;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}

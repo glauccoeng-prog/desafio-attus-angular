@@ -14,6 +14,7 @@ import { User } from '../../models/user.model';
   standalone: true,
   imports: [MatCardModule, MatIconModule, MatButtonModule, MatTooltipModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./user-card.component.scss'],
   template: `
     <mat-card appearance="outlined" class="user-card">
       <mat-card-content class="user-card__content">
@@ -46,77 +47,6 @@ import { User } from '../../models/user.model';
         </div>
       </mat-card-content>
     </mat-card>
-  `,
-  styles: `
-    .user-card {
-      transition: box-shadow 0.2s ease;
-      &:hover {
-        box-shadow: var(--mat-sys-level2);
-      }
-    }
-
-    .user-card__content {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 16px;
-    }
-
-    .user-card__avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: var(--mat-sys-primary-container);
-      color: var(--mat-sys-on-primary-container);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .user-card__info {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .user-card__name {
-      font: var(--mat-sys-body-large);
-      color: var(--mat-sys-on-surface);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .user-card__email {
-      font: var(--mat-sys-body-small);
-      color: var(--mat-sys-on-surface-variant);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .user-card__cpf {
-      font: var(--mat-sys-body-small);
-      color: var(--mat-sys-on-surface-variant);
-      flex-shrink: 0;
-      display: none;
-
-      @media (min-width: 640px) {
-        display: block;
-      }
-    }
-
-    .user-card__actions {
-      flex-shrink: 0;
-      display: flex;
-      gap: 4px;
-    }
-
-    .delete-btn {
-      color: var(--mat-sys-error);
-    }
   `,
 })
 export class UserCardComponent {

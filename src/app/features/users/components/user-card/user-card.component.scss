@@ -1,0 +1,106 @@
+// ============================================================
+// USER CARD COMPONENT STYLES
+// Card individual de usuário com avatar, nome, email, CPF e ações
+// ============================================================
+
+@use '../tokens/spacing' as *;
+@use '../utilities/responsive' as *;
+
+// ============================================================
+// CARD CONTAINER
+// ============================================================
+
+.user-card {
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--mat-sys-level2);
+  }
+}
+
+// ============================================================
+// CARD CONTENT
+// ============================================================
+
+.user-card__content {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xl;
+  padding: $spacing-lg $spacing-xl;
+}
+
+// ============================================================
+// AVATAR
+// ============================================================
+
+.user-card__avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// ============================================================
+// USER INFO (NOME + EMAIL)
+// ============================================================
+
+.user-card__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+// User name
+.user-card__name {
+  font: var(--mat-sys-body-large);
+  color: var(--mat-sys-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// User email
+.user-card__email {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ============================================================
+// CPF (RESPONSIVO)
+// ============================================================
+
+.user-card__cpf {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+  flex-shrink: 0;
+  display: none;
+
+  @include tablet-and-up {
+    display: block;
+  }
+}
+
+// ============================================================
+// ACTIONS (EDIT/DELETE BUTTONS)
+// ============================================================
+
+.user-card__actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: $spacing-sm;
+}
+
+// Delete button color
+.delete-btn {
+  color: var(--mat-sys-error);
+}
