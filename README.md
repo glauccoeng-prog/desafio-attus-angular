@@ -172,38 +172,38 @@ src/styles/
 
 #### 🎨 Cores
 
-| Token                  | Valor   | Uso                                    |
-| ---------------------- | ------- | -------------------------------------- |
-| `$color-primary`       | #1976d2 | Botões CTA, ações principais           |
-| `$color-error`         | #f44336 | Erros, exclusões, ações destrutivas    |
-| `$color-success`       | #4caf50 | Confirmações, status positivo          |
-| `$color-warning`       | #ff9800 | Alertas, avisos                        |
-| `$color-surface`       | #ffffff | Backgrounds principais                 |
-| `$color-on-surface`    | #212121 | Texto primário                         |
-| `$color-on-surface-variant` | #757575 | Texto secundário, hints               |
+| Token                       | Valor   | Uso                                 |
+| --------------------------- | ------- | ----------------------------------- |
+| `$color-primary`            | #1976d2 | Botões CTA, ações principais        |
+| `$color-error`              | #f44336 | Erros, exclusões, ações destrutivas |
+| `$color-success`            | #4caf50 | Confirmações, status positivo       |
+| `$color-warning`            | #ff9800 | Alertas, avisos                     |
+| `$color-surface`            | #ffffff | Backgrounds principais              |
+| `$color-on-surface`         | #212121 | Texto primário                      |
+| `$color-on-surface-variant` | #757575 | Texto secundário, hints             |
 
 #### 📏 Espaçamento
 
-| Token           | Valor | Uso                                  |
-| --------------- | ----- | ------------------------------------ |
-| `$spacing-xs`   | 2px   | Micro espaçamentos                   |
-| `$spacing-sm`   | 4px   | Gaps entre ícones, compacto          |
-| `$spacing-md`   | 8px   | Gaps normais, spacing padrão         |
-| `$spacing-lg`   | 12px  | Padding de cards, gaps médios        |
-| `$spacing-xl`   | 16px  | Padding principal, gaps maiores      |
-| `$spacing-3xl`  | 24px  | Padding de páginas, headers          |
-| `$spacing-8xl`  | 64px  | Loading states, empty states         |
+| Token          | Valor | Uso                             |
+| -------------- | ----- | ------------------------------- |
+| `$spacing-xs`  | 2px   | Micro espaçamentos              |
+| `$spacing-sm`  | 4px   | Gaps entre ícones, compacto     |
+| `$spacing-md`  | 8px   | Gaps normais, spacing padrão    |
+| `$spacing-lg`  | 12px  | Padding de cards, gaps médios   |
+| `$spacing-xl`  | 16px  | Padding principal, gaps maiores |
+| `$spacing-3xl` | 24px  | Padding de páginas, headers     |
+| `$spacing-8xl` | 64px  | Loading states, empty states    |
 
 #### 🌑 Sombras (Elevação)
 
-| Token             | Sombra CSS                                    | Uso                               |
-| ----------------- | --------------------------------------------- | --------------------------------- |
-| `$shadow-level-0` | none                                          | Flat, sem elevação                |
-| `$shadow-level-1` | 0 2px 4px rgba(0, 0, 0, 0.1)                  | Buttons hover, cards leves        |
-| `$shadow-level-2` | 0 4px 8px rgba(0, 0, 0, 0.12)                 | Cards normais, dropdowns          |
-| `$shadow-level-3` | 0 8px 16px rgba(0, 0, 0, 0.15)                | Modals, cards ao hover            |
-| `$shadow-level-4` | 0 12px 24px rgba(0, 0, 0, 0.18)               | Floating buttons, toasts          |
-| `$shadow-level-5` | 0 16px 32px rgba(0, 0, 0, 0.2)                | Overlays, dialogs importantes     |
+| Token             | Sombra CSS                      | Uso                           |
+| ----------------- | ------------------------------- | ----------------------------- |
+| `$shadow-level-0` | none                            | Flat, sem elevação            |
+| `$shadow-level-1` | 0 2px 4px rgba(0, 0, 0, 0.1)    | Buttons hover, cards leves    |
+| `$shadow-level-2` | 0 4px 8px rgba(0, 0, 0, 0.12)   | Cards normais, dropdowns      |
+| `$shadow-level-3` | 0 8px 16px rgba(0, 0, 0, 0.15)  | Modals, cards ao hover        |
+| `$shadow-level-4` | 0 12px 24px rgba(0, 0, 0, 0.18) | Floating buttons, toasts      |
+| `$shadow-level-5` | 0 16px 32px rgba(0, 0, 0, 0.2)  | Overlays, dialogs importantes |
 
 ### Mixins (Padrões Reutilizáveis)
 
@@ -256,18 +256,38 @@ src/styles/
 
 ```scss
 // Spacing
-.m-lg   { margin: 12px; }
-.p-xl   { padding: 16px; }
-.gap-md { gap: 8px; }
+.m-lg {
+  margin: 12px;
+}
+.p-xl {
+  padding: 16px;
+}
+.gap-md {
+  gap: 8px;
+}
 
 // Typography
-.text-lg     { font-size: 16px; }
-.font-bold   { font-weight: 700; }
-.heading-1   { font: var(--mat-sys-headline-large); }
+.text-lg {
+  font-size: 16px;
+}
+.font-bold {
+  font-weight: 700;
+}
+.heading-1 {
+  font: var(--mat-sys-headline-large);
+}
 
 // Responsive
-.hide-mobile { @media (max-width: 599px) { display: none !important; } }
-.show-tablet-and-up { @media (min-width: 600px) { display: block; } }
+.hide-mobile {
+  @media (max-width: 599px) {
+    display: none !important;
+  }
+}
+.show-tablet-and-up {
+  @media (min-width: 600px) {
+    display: block;
+  }
+}
 ```
 
 ### Como Usar nos Componentes
@@ -279,33 +299,33 @@ src/styles/
 // (importados via src/styles.scss)
 
 .user-card {
-  @include card-interactive;  // Mixin: card base + hover effect
+  @include card-interactive; // Mixin: card base + hover effect
 
   &:hover {
-    box-shadow: $shadow-level-3;  // Token: sombra de elevação
-    transform: translateY(-2px);   // Animação padrão
+    box-shadow: $shadow-level-3; // Token: sombra de elevação
+    transform: translateY(-2px); // Animação padrão
   }
 }
 
 .user-card__avatar {
   width: 40px;
-  padding: $spacing-lg;           // Token: espaçamento
-  background-color: $color-primary-container;  // Token: cor
-  gap: $spacing-md;               // Token: espaçamento
-  animation: fadeInTop 0.3s ease-out;  // Keyframe do mixin animations
+  padding: $spacing-lg; // Token: espaçamento
+  background-color: $color-primary-container; // Token: cor
+  gap: $spacing-md; // Token: espaçamento
+  animation: fadeInTop 0.3s ease-out; // Keyframe do mixin animations
 }
 ```
 
 ### Benefícios
 
-| Benefício                      | Antes                              | Depois                                    |
-| ------------------------------ | ---------------------------------- | ----------------------------------------- |
-| **Mudança de cor global**       | Procurar em 5+ arquivos            | Editar 1 variável em `colors.scss`        |
-| **Consistência de espaçamento** | Valores hardcoded variados         | Escala única centralizada                 |
-| **Código reutilizável**        | Estilos repetidos em componentes   | Mixins e utilities prontas                |
-| **Responsividade**             | Media queries inline               | Breakpoints centralizados + mixins        |
-| **Manutenibilidade**           | Estilo espalhado em 6 arquivos     | Estrutura modular e organizada            |
-| **Escalabilidade**             | Difícil adicionar novos componentes | Padrões claros para novos estilos         |
+| Benefício                       | Antes                               | Depois                             |
+| ------------------------------- | ----------------------------------- | ---------------------------------- |
+| **Mudança de cor global**       | Procurar em 5+ arquivos             | Editar 1 variável em `colors.scss` |
+| **Consistência de espaçamento** | Valores hardcoded variados          | Escala única centralizada          |
+| **Código reutilizável**         | Estilos repetidos em componentes    | Mixins e utilities prontas         |
+| **Responsividade**              | Media queries inline                | Breakpoints centralizados + mixins |
+| **Manutenibilidade**            | Estilo espalhado em 6 arquivos      | Estrutura modular e organizada     |
+| **Escalabilidade**              | Difícil adicionar novos componentes | Padrões claros para novos estilos  |
 
 ### Documentação Completa
 

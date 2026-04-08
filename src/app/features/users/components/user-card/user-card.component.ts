@@ -14,130 +14,132 @@ import { User } from '../../models/user.model';
   standalone: true,
   imports: [MatCardModule, MatIconModule, MatButtonModule, MatTooltipModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [`
-    .user-card {
-      transition: all 0.2s ease;
-      border-radius: 8px;
-    }
-
-    .user-card:hover {
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .user-card:focus-within {
-      outline: 2px solid var(--mat-sys-primary);
-      outline-offset: 2px;
-    }
-
-    .user-card__content {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 16px;
-    }
-
-    .user-card__avatar {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 50%;
-      background-color: var(--mat-sys-primary-container);
-      color: var(--mat-sys-on-primary-container);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .user-card:hover .user-card__avatar {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-      transform: scale(1.08);
-    }
-
-    .user-card__info {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .user-card__name {
-      font: var(--mat-sys-body-large);
-      color: var(--mat-sys-on-surface);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    .user-card:hover .user-card__name {
-      color: var(--mat-sys-primary);
-    }
-
-    .user-card__email {
-      font: var(--mat-sys-body-small);
-      color: var(--mat-sys-on-surface-variant);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-      transition: color 0.2s ease;
-    }
-
-    .user-card:hover .user-card__email {
-      color: var(--mat-sys-on-surface);
-    }
-
-    .user-card__cpf {
-      font: var(--mat-sys-body-small);
-      color: var(--mat-sys-on-surface-variant);
-      flex-shrink: 0;
-      display: none;
-    }
-
-    @media (min-width: 640px) {
-      .user-card__cpf {
-        display: block;
+  styles: [
+    `
+      .user-card {
+        transition: all 0.2s ease;
+        border-radius: 8px;
       }
-    }
 
-    .user-card__actions {
-      flex-shrink: 0;
-      display: flex;
-      gap: 4px;
-      opacity: 0.7;
-      transition: opacity 0.2s ease;
-    }
+      .user-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
 
-    .user-card:hover .user-card__actions {
-      opacity: 1;
-    }
+      .user-card:focus-within {
+        outline: 2px solid var(--mat-sys-primary);
+        outline-offset: 2px;
+      }
 
-    .user-card__actions button {
-      transition: all 0.2s ease;
-    }
+      .user-card__content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 16px;
+      }
 
-    .user-card__actions button:hover {
-      transform: scale(1.1);
-    }
+      .user-card__avatar {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        background-color: var(--mat-sys-primary-container);
+        color: var(--mat-sys-on-primary-container);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-    .user-card__actions button:active {
-      transform: scale(0.95);
-    }
+      .user-card:hover .user-card__avatar {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        transform: scale(1.08);
+      }
 
-    .delete-btn {
-      color: var(--mat-sys-error);
-    }
+      .user-card__info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
 
-    .delete-btn:hover {
-      color: #c62828;
-    }
-  `],
+      .user-card__name {
+        font: var(--mat-sys-body-large);
+        color: var(--mat-sys-on-surface);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .user-card:hover .user-card__name {
+        color: var(--mat-sys-primary);
+      }
+
+      .user-card__email {
+        font: var(--mat-sys-body-small);
+        color: var(--mat-sys-on-surface-variant);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2px;
+        transition: color 0.2s ease;
+      }
+
+      .user-card:hover .user-card__email {
+        color: var(--mat-sys-on-surface);
+      }
+
+      .user-card__cpf {
+        font: var(--mat-sys-body-small);
+        color: var(--mat-sys-on-surface-variant);
+        flex-shrink: 0;
+        display: none;
+      }
+
+      @media (min-width: 640px) {
+        .user-card__cpf {
+          display: block;
+        }
+      }
+
+      .user-card__actions {
+        flex-shrink: 0;
+        display: flex;
+        gap: 4px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+      }
+
+      .user-card:hover .user-card__actions {
+        opacity: 1;
+      }
+
+      .user-card__actions button {
+        transition: all 0.2s ease;
+      }
+
+      .user-card__actions button:hover {
+        transform: scale(1.1);
+      }
+
+      .user-card__actions button:active {
+        transform: scale(0.95);
+      }
+
+      .delete-btn {
+        color: var(--mat-sys-error);
+      }
+
+      .delete-btn:hover {
+        color: #c62828;
+      }
+    `,
+  ],
   template: `
     <mat-card appearance="outlined" class="user-card">
       <mat-card-content class="user-card__content">
