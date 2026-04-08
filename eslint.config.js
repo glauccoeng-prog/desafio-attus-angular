@@ -33,8 +33,8 @@ module.exports = defineConfig([
       // ===== CODE QUALITY =====
       'prefer-const': 'error',
       'no-var': 'error',
-      'eqeqeq': ['error', 'always'],
-      'curly': 'error',
+      eqeqeq: ['error', 'always'],
+      curly: 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
 
       // ===== ANGULAR BEST PRACTICES =====

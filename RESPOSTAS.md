@@ -12,16 +12,16 @@
 
 #### Problemas identificados no código original:
 
-| # | Problema | Impacto |
-|---|---|---|
-| 1 | **Uso excessivo de `any`** | Elimina toda segurança de tipos do TypeScript, anulando o principal benefício da linguagem |
-| 2 | **Loops imperativos `for`** | Código verboso e propenso a erros quando `Array.find()` resolve de forma declarativa |
-| 3 | **Código duplicado (DRY violation)** | A busca por produto é repetida em 2 métodos — viola SRP e DRY |
-| 4 | **Sem null safety** | `produto` pode ser `undefined` após o loop, causando `TypeError` em runtime |
-| 5 | **Comparação fraca `==`** | Permite coerção de tipos indesejada; deveria usar `===` (strict equality) |
-| 6 | **Sem `readonly`** | Propriedades mutáveis sem necessidade, violando princípio de imutabilidade |
-| 7 | **Retorno booleano verboso** | `if(x > 0) return true; else return false;` quando `return x > 0;` é suficiente |
-| 8 | **Sem encapsulamento** | Classe `Produto` com construtor redundante; interface é mais idiomática em TS |
+| #   | Problema                             | Impacto                                                                                    |
+| --- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| 1   | **Uso excessivo de `any`**           | Elimina toda segurança de tipos do TypeScript, anulando o principal benefício da linguagem |
+| 2   | **Loops imperativos `for`**          | Código verboso e propenso a erros quando `Array.find()` resolve de forma declarativa       |
+| 3   | **Código duplicado (DRY violation)** | A busca por produto é repetida em 2 métodos — viola SRP e DRY                              |
+| 4   | **Sem null safety**                  | `produto` pode ser `undefined` após o loop, causando `TypeError` em runtime                |
+| 5   | **Comparação fraca `==`**            | Permite coerção de tipos indesejada; deveria usar `===` (strict equality)                  |
+| 6   | **Sem `readonly`**                   | Propriedades mutáveis sem necessidade, violando princípio de imutabilidade                 |
+| 7   | **Retorno booleano verboso**         | `if(x > 0) return true; else return false;` quando `return x > 0;` é suficiente            |
+| 8   | **Sem encapsulamento**               | Classe `Produto` com construtor redundante; interface é mais idiomática em TS              |
 
 #### Código refatorado:
 
@@ -123,7 +123,7 @@ interface Pagina<T> {
 function filtrarEPaginar<T>(
   data: readonly T[],
   filterFn: (item: T) => boolean,
-  params: PaginaParams
+  params: PaginaParams,
 ): Pagina<T> {
   const filtered = data.filter(filterFn);
   const totalRegistros = filtered.length;
@@ -158,7 +158,7 @@ const users: readonly User[] = [
 const resultado: Pagina<User> = filtrarEPaginar(
   users,
   (user) => user.nome.toLowerCase().includes('a'),
-  { pagina: 1, tamanho: 2 }
+  { pagina: 1, tamanho: 2 },
 );
 
 console.log(resultado);
@@ -205,16 +205,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly pessoaService: PessoaService,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
-    this.subscriptionBuscarPessoa = this.pessoaService
-      .buscarPorId(1)
-      .subscribe((pessoa) => {
-        this.texto = `Nome: ${pessoa.nome}`;
-        this.cdr.markForCheck(); // ← Notifica o Angular manualmente
-      });
+    this.subscriptionBuscarPessoa = this.pessoaService.buscarPorId(1).subscribe((pessoa) => {
+      this.texto = `Nome: ${pessoa.nome}`;
+      this.cdr.markForCheck(); // ← Notifica o Angular manualmente
+    });
 
     this.intervalId = setInterval(() => this.contador++, 1000);
   }
@@ -247,9 +245,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Async pipe chama markForCheck() automaticamente ao emitir
-    this.texto$ = this.pessoaService.buscarPorId(1).pipe(
-      map((pessoa) => `Nome: ${pessoa.nome}`)
-    );
+    this.texto$ = this.pessoaService.buscarPorId(1).pipe(map((pessoa) => `Nome: ${pessoa.nome}`));
 
     this.intervalId = setInterval(() => this.contador++, 1000);
   }
@@ -281,12 +277,10 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private readonly pessoaService: PessoaService) {}
 
   ngOnInit(): void {
-    this.subscriptionBuscarPessoa = this.pessoaService
-      .buscarPorId(1)
-      .subscribe((pessoa) => {
-        this.texto.set(`Nome: ${pessoa.nome}`);
-        // Signals atualizam automaticamente com OnPush
-      });
+    this.subscriptionBuscarPessoa = this.pessoaService.buscarPorId(1).subscribe((pessoa) => {
+      this.texto.set(`Nome: ${pessoa.nome}`);
+      // Signals atualizam automaticamente com OnPush
+    });
 
     this.intervalId = setInterval(() => this.contador++, 1000);
   }
@@ -319,6 +313,7 @@ ngOnInit(): void {
 ```
 
 **Problemas:**
+
 - Inner subscription não é gerenciada → **memory leak**
 - Callback hell — difícil de ler e manter
 - Difícil de testar unitariamente
@@ -338,14 +333,17 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const pessoaId = 1;
 
-    this.pessoaService.buscarPorId(pessoaId).pipe(
-      switchMap(pessoa =>
-        this.pessoaService.buscarQuantidadeFamiliares(pessoaId).pipe(
-          map(qtd => `Nome: ${pessoa.nome} | familiares: ${qtd}`)
-        )
-      ),
-      takeUntilDestroyed(this.destroyRef) // ← Previne memory leak
-    ).subscribe(texto => this.texto = texto);
+    this.pessoaService
+      .buscarPorId(pessoaId)
+      .pipe(
+        switchMap((pessoa) =>
+          this.pessoaService
+            .buscarQuantidadeFamiliares(pessoaId)
+            .pipe(map((qtd) => `Nome: ${pessoa.nome} | familiares: ${qtd}`)),
+        ),
+        takeUntilDestroyed(this.destroyRef), // ← Previne memory leak
+      )
+      .subscribe((texto) => (this.texto = texto));
   }
 }
 ```
@@ -416,12 +414,14 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import {
-  BehaviorSubject, Observable, of
-} from 'rxjs';
-import {
-  debounceTime, distinctUntilChanged, switchMap,
-  tap, catchError, finalize
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap,
+  catchError,
+  finalize,
 } from 'rxjs/operators';
 import { SearchService } from './search.service';
 
@@ -474,21 +474,22 @@ export class SearchComponent {
       this.loadingSubject.next(true);
       this.errorSubject.next(null);
     }),
-    switchMap(query =>
+    switchMap((query) =>
       this.searchService.search(query).pipe(
         catchError(() => {
           this.errorSubject.next('Erro na busca. Tente novamente.');
           return of([]);
         }),
-        finalize(() => this.loadingSubject.next(false))
-      )
+        finalize(() => this.loadingSubject.next(false)),
+      ),
     ),
-    takeUntilDestroyed(this.destroyRef)
+    takeUntilDestroyed(this.destroyRef),
   );
 }
 ```
 
 **Operadores RxJS utilizados:**
+
 - `debounceTime(500)` — Espera 500ms de inatividade antes de emitir
 - `distinctUntilChanged()` — Evita requisição duplicada se valor não mudou
 - `switchMap()` — Cancela requisição anterior ao emitir novo valor (race condition)
@@ -525,12 +526,14 @@ trackByFn = (_: number, user: User): string => user.id;
 #### OnPush vs Default:
 
 **`ChangeDetectionStrategy.Default`:**
+
 - O Angular verifica **TODOS** os componentes da árvore em cada ciclo de change detection
 - Cada click, timer, HTTP response, promise resolution dispara verificação completa
 - Em uma lista de 1000 items: ~1000+ verificações por ciclo
 - Causa jank visível em listas grandes (~60ms+ por ciclo)
 
 **`ChangeDetectionStrategy.OnPush`:**
+
 - O Angular só verifica o componente quando suas `@Inputs` mudam **por referência**
 - Eventos do template, `async` pipe e `markForCheck()` também disparam verificação
 - Combinar com `trackBy`: apenas componentes cujo item **realmente mudou** são re-renderizados
@@ -538,12 +541,12 @@ trackByFn = (_: number, user: User): string => user.id;
 
 #### Impacto de usar Default em listas grandes:
 
-| Cenário | Default | OnPush + trackBy |
-|---|---|---|
-| 100 items | ~10ms | ~1ms |
-| 1.000 items | ~60ms+ | ~3ms |
-| 10.000 items | ~500ms+ (jank grave) | ~10ms |
-| Re-render total | Sempre | Apenas items alterados |
+| Cenário          | Default              | OnPush + trackBy         |
+| ---------------- | -------------------- | ------------------------ |
+| 100 items        | ~10ms                | ~1ms                     |
+| 1.000 items      | ~60ms+               | ~3ms                     |
+| 10.000 items     | ~500ms+ (jank grave) | ~10ms                    |
+| Re-render total  | Sempre               | Apenas items alterados   |
 | Memory footprint | Alto (recriação DOM) | Baixo (reutilização DOM) |
 
 **Conclusão:** Para listas com centenas de items, `OnPush + trackBy` é essencial. `Default` sem trackBy pode causar problemas sérios de performance perceptíveis pelo usuário (scroll travando, input lag).
@@ -556,8 +559,12 @@ trackByFn = (_: number, user: User): string => user.id;
 
 ```typescript
 import {
-  Component, signal, computed, effect, output,
-  ChangeDetectionStrategy
+  Component,
+  signal,
+  computed,
+  effect,
+  output,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 interface CartItem {
@@ -578,7 +585,7 @@ interface CartItem {
         <button (click)="removeItem(item.id)">Remover</button>
       </div>
     }
-    <p>Total: R$ {{ total() | number:'1.2-2' }}</p>
+    <p>Total: R$ {{ total() | number: '1.2-2' }}</p>
   `,
 })
 export class CartComponent {
@@ -587,7 +594,7 @@ export class CartComponent {
 
   /** Computed: total = Σ(quantidade × preço) — recalculado automaticamente */
   readonly total = computed(() =>
-    this.items().reduce((acc, item) => acc + item.quantidade * item.preco, 0)
+    this.items().reduce((acc, item) => acc + item.quantidade * item.preco, 0),
   );
 
   /** Output: emite sempre que o total mudar */
@@ -602,29 +609,27 @@ export class CartComponent {
 
   /** Adiciona item ao carrinho com imutabilidade */
   addItem(item: Omit<CartItem, 'id'>): void {
-    this.items.update(current => [
-      ...current,
-      { ...item, id: crypto.randomUUID() },
-    ]);
+    this.items.update((current) => [...current, { ...item, id: crypto.randomUUID() }]);
   }
 
   /** Remove item pelo ID com imutabilidade */
   removeItem(id: string): void {
-    this.items.update(current => current.filter(item => item.id !== id));
+    this.items.update((current) => current.filter((item) => item.id !== id));
   }
 
   /** Atualiza quantidade de um item específico */
   updateQuantity(id: string, quantidade: number): void {
-    this.items.update(current =>
-      current.map(item =>
-        item.id === id ? { ...item, quantidade: Math.max(0, quantidade) } : item
-      )
+    this.items.update((current) =>
+      current.map((item) =>
+        item.id === id ? { ...item, quantidade: Math.max(0, quantidade) } : item,
+      ),
     );
   }
 }
 ```
 
 **Explicação dos Signals:**
+
 - `signal<T>()` — Estado reativo primitivo. Substitui `BehaviorSubject` ou `useState`
 - `computed()` — Derivação automática. Recalcula quando dependências mudam (lazy + memoized)
 - `effect()` — Side effect reativo. Executa quando signals dependentes mudam
@@ -685,30 +690,40 @@ export const todoFeature = createFeature({
   reducer: createReducer(
     initialState,
 
-    on(TodoActions.loadTodos, (state): TodoState => ({
-      ...state,
-      loading: true,
-      error: null,
-    })),
+    on(
+      TodoActions.loadTodos,
+      (state): TodoState => ({
+        ...state,
+        loading: true,
+        error: null,
+      }),
+    ),
 
-    on(TodoActions.loadTodosSuccess, (state, { todos }): TodoState => ({
-      ...state,
-      todos,
-      loading: false,
-    })),
+    on(
+      TodoActions.loadTodosSuccess,
+      (state, { todos }): TodoState => ({
+        ...state,
+        todos,
+        loading: false,
+      }),
+    ),
 
-    on(TodoActions.loadTodosError, (state, { error }): TodoState => ({
-      ...state,
-      error,
-      loading: false,
-    })),
+    on(
+      TodoActions.loadTodosError,
+      (state, { error }): TodoState => ({
+        ...state,
+        error,
+        loading: false,
+      }),
+    ),
 
-    on(TodoActions.toggleTodoComplete, (state, { id }): TodoState => ({
-      ...state,
-      todos: state.todos.map((t) =>
-        t.id === id ? { ...t, concluido: !t.concluido } : t
-      ),
-    }))
+    on(
+      TodoActions.toggleTodoComplete,
+      (state, { id }): TodoState => ({
+        ...state,
+        todos: state.todos.map((t) => (t.id === id ? { ...t, concluido: !t.concluido } : t)),
+      }),
+    ),
   ),
 });
 ```
@@ -720,19 +735,14 @@ import { createSelector } from '@ngrx/store';
 import { todoFeature } from './todo.reducer';
 
 // Auto-generated selectors from createFeature
-export const {
-  selectTodos,
-  selectLoading,
-  selectError,
-} = todoFeature;
+export const { selectTodos, selectLoading, selectError } = todoFeature;
 
 /** selectAllTodos: Retorna a lista completa */
 export const selectAllTodos = selectTodos;
 
 /** selectPendingTodos: Retorna apenas tarefas não concluídas */
-export const selectPendingTodos = createSelector(
-  selectTodos,
-  (todos) => todos.filter((t) => !t.concluido)
+export const selectPendingTodos = createSelector(selectTodos, (todos) =>
+  todos.filter((t) => !t.concluido),
 );
 ```
 
@@ -757,17 +767,16 @@ export const loadTodos$ = createEffect(
       switchMap(() =>
         http.get<Todo[]>('/api/todos').pipe(
           map((todos) => TodoActions.loadTodosSuccess({ todos })),
-          catchError((error: Error) =>
-            of(TodoActions.loadTodosError({ error: error.message }))
-          )
-        )
-      )
+          catchError((error: Error) => of(TodoActions.loadTodosError({ error: error.message }))),
+        ),
+      ),
     ),
-  { functional: true }
+  { functional: true },
 );
 ```
 
 **Boas práticas aplicadas:**
+
 - `createFeature` — Auto-gera selectors a partir do reducer
 - `createActionGroup` — Actions organizadas e fortemente tipadas
 - Tipagem forte no estado — Zero `any`, todas as propriedades com tipo explícito

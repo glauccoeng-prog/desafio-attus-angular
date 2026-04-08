@@ -15,6 +15,7 @@ Uma aplicação completa de gerenciamento de usuários com CRUD, busca com debou
 ---
 
 ## 📋 Índice
+
 - [Visão Geral](#-visão-geral)
 - [Tecnologias](#-tecnologias-e-ferramentas)
 - [Funcionalidades](#-funcionalidades-implementadas)
@@ -56,39 +57,44 @@ Este projeto é uma **avaliação técnica** para a empresa Attus, demonstrando 
 ## 🛠️ Tecnologias e Ferramentas
 
 ### Core
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| [Angular](https://angular.dev/) | 21 | Framework principal (Standalone, Signals) |
-| [Angular Material](https://material.angular.dev/) | 21 | Design System Material Design 3 |
-| [RxJS](https://rxjs.dev/) | 7.8 | Reatividade e operadores assíncronos |
-| [TypeScript](https://www.typescriptlang.org/) | 5.9 | Tipagem estrita (`strict: true`) |
+
+| Tecnologia                                        | Versão | Descrição                                 |
+| ------------------------------------------------- | ------ | ----------------------------------------- |
+| [Angular](https://angular.dev/)                   | 21     | Framework principal (Standalone, Signals) |
+| [Angular Material](https://material.angular.dev/) | 21     | Design System Material Design 3           |
+| [RxJS](https://rxjs.dev/)                         | 7.8    | Reatividade e operadores assíncronos      |
+| [TypeScript](https://www.typescriptlang.org/)     | 5.9    | Tipagem estrita (`strict: true`)          |
 
 ### UI e Estilização
-| Tecnologia | Descrição |
-|------------|-----------|
-| Material Design 3 | Tema com `mat.$azure-palette` |
-| Roboto Font | Tipografia (Google Fonts) |
-| CSS Variables | Variáveis do sistema Material (`--mat-sys-*`) |
-| SCSS | Estilos globais (tema e reset) |
+
+| Tecnologia        | Descrição                                     |
+| ----------------- | --------------------------------------------- |
+| Material Design 3 | Tema com `mat.$azure-palette`                 |
+| Roboto Font       | Tipografia (Google Fonts)                     |
+| CSS Variables     | Variáveis do sistema Material (`--mat-sys-*`) |
+| SCSS              | Estilos globais (tema e reset)                |
 
 ### Qualidade de Código
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| [ESLint](https://eslint.org/) | 10 | Linting com regras de segurança e Angular |
-| [Prettier](https://prettier.io/) | 3.8 | Formatação automática |
-| [Husky](https://typicode.github.io/husky/) | 9.1 | Git hooks (pre-commit) |
-| [lint-staged](https://github.com/lint-staged/lint-staged) | 16.4 | Lint/format somente arquivos staged |
+
+| Tecnologia                                                | Versão | Descrição                                 |
+| --------------------------------------------------------- | ------ | ----------------------------------------- |
+| [ESLint](https://eslint.org/)                             | 10     | Linting com regras de segurança e Angular |
+| [Prettier](https://prettier.io/)                          | 3.8    | Formatação automática                     |
+| [Husky](https://typicode.github.io/husky/)                | 9.1    | Git hooks (pre-commit)                    |
+| [lint-staged](https://github.com/lint-staged/lint-staged) | 16.4   | Lint/format somente arquivos staged       |
 
 ### Testes
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| [Vitest](https://vitest.dev/) | 4.1 | Test runner (91 testes) |
-| [Coverage V8](https://vitest.dev/guide/coverage) | 4.1 | Cobertura de código |
-| [JSDOM](https://github.com/jsdom/jsdom) | 28 | Ambiente de simulação DOM |
+
+| Tecnologia                                       | Versão | Descrição                 |
+| ------------------------------------------------ | ------ | ------------------------- |
+| [Vitest](https://vitest.dev/)                    | 4.1    | Test runner (91 testes)   |
+| [Coverage V8](https://vitest.dev/guide/coverage) | 4.1    | Cobertura de código       |
+| [JSDOM](https://github.com/jsdom/jsdom)          | 28     | Ambiente de simulação DOM |
 
 ### CI/CD
-| Tecnologia | Descrição |
-|------------|-----------|
+
+| Tecnologia                                            | Descrição                              |
+| ----------------------------------------------------- | -------------------------------------- |
 | [GitHub Actions](https://github.com/features/actions) | Pipeline: lint → format → test → build |
 
 ---
@@ -96,36 +102,42 @@ Este projeto é uma **avaliação técnica** para a empresa Attus, demonstrando 
 ## 📋 Funcionalidades Implementadas
 
 ### 1. 👥 Listagem de Usuários
+
 - **Cards Material** com avatar, nome, e-mail e CPF
 - **Paginação** com botões de navegação e indicador de registros
 - **Empty state** quando sem resultados
 - **Loading state** com spinner Material
 
 ### 2. 🔍 Busca com Debounce
+
 - **Campo de pesquisa** com ícone e indicador de loading
 - **debounceTime(300ms)** para evitar requisições excessivas
 - **distinctUntilChanged** para evitar buscas duplicadas
 - **switchMap** para cancelar busca anterior automaticamente
 
 ### 3. ➕ CRUD Completo
+
 - **Criar** — Modal com formulário reativo e validação
 - **Editar** — Modal com pré-preenchimento dos dados
 - **Excluir** — Dialog de confirmação estilizado
 - **SnackBar** — Feedback visual para todas as ações
 
 ### 4. ✅ Validação Brasileira
+
 - **CPF** — Algoritmo oficial dos dígitos verificadores
 - **Telefone** — 10-11 dígitos com máscara `(00) 00000-0000`
 - **E-mail** — Formato `usuario@dominio.ext`
 - **Máscaras automáticas** — Formatação em tempo real
 
 ### 5. 📱 Layout Responsivo
+
 - **Sidenav** — `mode: 'side'` no desktop, `mode: 'over'` no mobile
 - **Breakpoints** — `Breakpoints.Handset` e `TabletPortrait`
 - **FAB** — Botão flutuante vermelho fixo no canto inferior
 - **Grid adaptativo** — Cards empilham no mobile
 
 ### 6. 🛡️ Error Handling
+
 - **Banner de erro** com ícone warning e botão retry
 - **catchError** em todas as operações do Store
 - **finalize** para reset de loading em qualquer cenário
@@ -155,11 +167,11 @@ O projeto segue **Clean Architecture** com separação clara em camadas:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Camada | Responsabilidade |
-|--------|------------------|
-| `core/` | Serviços de infraestrutura, dados mock (simula API REST) |
-| `features/` | Features isoladas com componentes, store, models, validators |
-| `shared/` | Utilitários genéricos, layout shell, componentes reutilizáveis |
+| Camada      | Responsabilidade                                               |
+| ----------- | -------------------------------------------------------------- |
+| `core/`     | Serviços de infraestrutura, dados mock (simula API REST)       |
+| `features/` | Features isoladas com componentes, store, models, validators   |
+| `shared/`   | Utilitários genéricos, layout shell, componentes reutilizáveis |
 
 ---
 
@@ -321,76 +333,82 @@ desafio-attus-angular/
 ## 🧩 Componentes
 
 ### Componentes Principais
-| Componente | Arquivo | Descrição |
-|------------|---------|-----------|
-| `AppComponent` | `app.component.ts` | Root — apenas `<router-outlet/>` |
-| `ShellComponent` | `shell.component.ts` | Layout com `MatSidenav` responsiva |
-| `UserListComponent` | `user-list.component.ts` | Página principal com listagem, filtro, paginação |
-| `UserCardComponent` | `user-card.component.ts` | Card individual com avatar, nome, e-mail, ações |
-| `UserFilterComponent` | `user-filter.component.ts` | Campo de busca com loading indicator |
-| `UserModalComponent` | `user-modal.component.ts` | Modal de criar/editar com formulário reativo |
-| `ConfirmDialogComponent` | `confirm-dialog.component.ts` | Dialog de confirmação para exclusão |
+
+| Componente               | Arquivo                       | Descrição                                        |
+| ------------------------ | ----------------------------- | ------------------------------------------------ |
+| `AppComponent`           | `app.component.ts`            | Root — apenas `<router-outlet/>`                 |
+| `ShellComponent`         | `shell.component.ts`          | Layout com `MatSidenav` responsiva               |
+| `UserListComponent`      | `user-list.component.ts`      | Página principal com listagem, filtro, paginação |
+| `UserCardComponent`      | `user-card.component.ts`      | Card individual com avatar, nome, e-mail, ações  |
+| `UserFilterComponent`    | `user-filter.component.ts`    | Campo de busca com loading indicator             |
+| `UserModalComponent`     | `user-modal.component.ts`     | Modal de criar/editar com formulário reativo     |
+| `ConfirmDialogComponent` | `confirm-dialog.component.ts` | Dialog de confirmação para exclusão              |
 
 ### Características de Todos os Componentes
-| Característica | Status |
-|----------------|--------|
-| `standalone: true` | ✅ Zero NgModules |
-| `ChangeDetectionStrategy.OnPush` | ✅ 6/6 componentes |
-| `input()` / `output()` | ✅ Signal-based inputs |
-| `inject()` | ✅ Functional DI |
-| IDs únicos para testes | ✅ `id="add-user-fab"`, etc. |
+
+| Característica                   | Status                       |
+| -------------------------------- | ---------------------------- |
+| `standalone: true`               | ✅ Zero NgModules            |
+| `ChangeDetectionStrategy.OnPush` | ✅ 6/6 componentes           |
+| `input()` / `output()`           | ✅ Signal-based inputs       |
+| `inject()`                       | ✅ Functional DI             |
+| IDs únicos para testes           | ✅ `id="add-user-fab"`, etc. |
 
 ---
 
 ## 📡 Estado com Signals (UsersStore)
 
 ### Signals (State)
-| Signal | Tipo | Descrição |
-|--------|------|-----------|
-| `_users` | `signal<readonly User[]>` | Lista de usuários |
-| `_loading` | `signal<boolean>` | Estado de carregamento |
-| `_error` | `signal<string \| null>` | Mensagem de erro |
-| `_searchTerm` | `signal<string>` | Termo de busca |
-| `_currentPage` | `signal<number>` | Página atual |
-| `_pageSize` | `signal<number>` | Itens por página (5) |
+
+| Signal         | Tipo                      | Descrição              |
+| -------------- | ------------------------- | ---------------------- |
+| `_users`       | `signal<readonly User[]>` | Lista de usuários      |
+| `_loading`     | `signal<boolean>`         | Estado de carregamento |
+| `_error`       | `signal<string \| null>`  | Mensagem de erro       |
+| `_searchTerm`  | `signal<string>`          | Termo de busca         |
+| `_currentPage` | `signal<number>`          | Página atual           |
+| `_pageSize`    | `signal<number>`          | Itens por página (5)   |
 
 ### Computed (Derived State)
-| Computed | Retorno | Descrição |
-|----------|---------|-----------|
-| `page` | `Pagina<User>` | Paginação calculada via `filtrarEPaginar<T>` |
+
+| Computed | Retorno        | Descrição                                    |
+| -------- | -------------- | -------------------------------------------- |
+| `page`   | `Pagina<User>` | Paginação calculada via `filtrarEPaginar<T>` |
 
 ### Actions
-| Método | Operadores RxJS | Descrição |
-|--------|-----------------|-----------|
-| `loadUsers()` | `catchError`, `finalize`, `takeUntilDestroyed` | Carrega todos os usuários |
-| `setSearchTerm()` | `debounceTime`, `distinctUntilChanged`, `switchMap` | Busca com debounce |
-| `createUser()` | `switchMap`, `catchError`, `finalize` | Cria e recarrega lista |
-| `updateUser()` | `switchMap`, `catchError`, `finalize` | Atualiza e recarrega lista |
-| `deleteUser()` | `switchMap`, `catchError`, `finalize` | Remove e recarrega lista |
-| `setCurrentPage()` | — | Muda página (signal direto) |
+
+| Método             | Operadores RxJS                                     | Descrição                   |
+| ------------------ | --------------------------------------------------- | --------------------------- |
+| `loadUsers()`      | `catchError`, `finalize`, `takeUntilDestroyed`      | Carrega todos os usuários   |
+| `setSearchTerm()`  | `debounceTime`, `distinctUntilChanged`, `switchMap` | Busca com debounce          |
+| `createUser()`     | `switchMap`, `catchError`, `finalize`               | Cria e recarrega lista      |
+| `updateUser()`     | `switchMap`, `catchError`, `finalize`               | Atualiza e recarrega lista  |
+| `deleteUser()`     | `switchMap`, `catchError`, `finalize`               | Remove e recarrega lista    |
+| `setCurrentPage()` | —                                                   | Muda página (signal direto) |
 
 ---
 
 ## 🔑 Operadores RxJS
 
-| Operador | Onde | Por quê |
-|----------|------|---------|
-| `switchMap` | Store: busca, CRUD | Cancela operação anterior |
-| `debounceTime(300)` | Store: filtro de busca | Espera 300ms de inatividade |
-| `distinctUntilChanged` | Store: filtro de busca | Evita busca duplicada |
-| `catchError` | Store: todos os Observable | Tratamento de erro |
-| `finalize` | Store: todas as actions | Reset de loading |
-| `takeUntilDestroyed` | Store: subscriptions | Cleanup automático |
-| `tap` | Store: search pipeline | Side-effect (loading) |
-| `of` / `timer` | API mock | Simulação de delay HTTP |
-| `map` | Shell: breakpoint | `BreakpointObserver` → `boolean` |
-| `toSignal` | Shell: `isMobile` | Converte Observable → Signal |
+| Operador               | Onde                       | Por quê                          |
+| ---------------------- | -------------------------- | -------------------------------- |
+| `switchMap`            | Store: busca, CRUD         | Cancela operação anterior        |
+| `debounceTime(300)`    | Store: filtro de busca     | Espera 300ms de inatividade      |
+| `distinctUntilChanged` | Store: filtro de busca     | Evita busca duplicada            |
+| `catchError`           | Store: todos os Observable | Tratamento de erro               |
+| `finalize`             | Store: todas as actions    | Reset de loading                 |
+| `takeUntilDestroyed`   | Store: subscriptions       | Cleanup automático               |
+| `tap`                  | Store: search pipeline     | Side-effect (loading)            |
+| `of` / `timer`         | API mock                   | Simulação de delay HTTP          |
+| `map`                  | Shell: breakpoint          | `BreakpointObserver` → `boolean` |
+| `toSignal`             | Shell: `isMobile`          | Converte Observable → Signal     |
 
 ---
 
 ## ✅ Validadores
 
 ### CPF (Algoritmo Oficial)
+
 ```typescript
 // Algoritmo dos dígitos verificadores
 1. Remove não-numéricos
@@ -405,6 +423,7 @@ formatCPF("52998224725") → "529.982.247-25"
 ```
 
 ### Telefone
+
 ```typescript
 // Aceita 10-11 dígitos
 isValidPhone("11999998888") → true
@@ -415,6 +434,7 @@ formatPhone("1134567890")  → "(11) 3456-7890"   // Fixo (10 dígitos)
 ```
 
 ### E-mail
+
 ```typescript
 // Regex: ^[^\s@]+@[^\s@]+\.[^\s@]+$
 isValidEmail("user@domain.com") → true
@@ -427,22 +447,22 @@ isValidEmail("invalid")         → false
 
 ### Cobertura Completa
 
-| Suite | Arquivo | Testes |
-|-------|---------|--------|
-| CPF Validator | `cpf.validator.spec.ts` | 13 |
-| Phone Validator | `phone.validator.spec.ts` | 12 |
-| Email Validator | `email.validator.spec.ts` | 6 |
-| filtrarEPaginar | `filtrar-e-paginar.spec.ts` | 8 |
-| User Model | `user.model.spec.ts` | 4 |
-| UserApiService | `user-api.service.spec.ts` | 11 |
-| UserCardComponent | `user-card.component.spec.ts` | 2 |
-| UserFilterComponent | `user-filter.component.spec.ts` | 3 |
-| UserModalComponent | `user-modal.component.spec.ts` | 11 |
-| ShellComponent | `shell.component.spec.ts` | 4 |
-| ConfirmDialogComponent | `confirm-dialog.component.spec.ts` | 3 |
-| UsersStore | `users.store.spec.ts` | 8 |
-| UserListComponent | `user-list.component.spec.ts` | 6 |
-| **Total** | **13 arquivos** | **91 testes** |
+| Suite                  | Arquivo                            | Testes        |
+| ---------------------- | ---------------------------------- | ------------- |
+| CPF Validator          | `cpf.validator.spec.ts`            | 13            |
+| Phone Validator        | `phone.validator.spec.ts`          | 12            |
+| Email Validator        | `email.validator.spec.ts`          | 6             |
+| filtrarEPaginar        | `filtrar-e-paginar.spec.ts`        | 8             |
+| User Model             | `user.model.spec.ts`               | 4             |
+| UserApiService         | `user-api.service.spec.ts`         | 11            |
+| UserCardComponent      | `user-card.component.spec.ts`      | 2             |
+| UserFilterComponent    | `user-filter.component.spec.ts`    | 3             |
+| UserModalComponent     | `user-modal.component.spec.ts`     | 11            |
+| ShellComponent         | `shell.component.spec.ts`          | 4             |
+| ConfirmDialogComponent | `confirm-dialog.component.spec.ts` | 3             |
+| UsersStore             | `users.store.spec.ts`              | 8             |
+| UserListComponent      | `user-list.component.spec.ts`      | 6             |
+| **Total**              | **13 arquivos**                    | **91 testes** |
 
 ### Executar Testes
 
@@ -462,23 +482,26 @@ npm run test:coverage
 ## 🔒 Qualidade de Código
 
 ### ESLint (eslint.config.js)
-| Categoria | Regras |
-|-----------|--------|
-| **Segurança** | `no-eval`, `no-implied-eval`, `no-new-func` |
-| **Qualidade** | `eqeqeq`, `prefer-const`, `no-var`, `curly`, `no-console` |
-| **Angular** | `component-selector`, `directive-selector`, `use-lifecycle-interface`, `no-empty-lifecycle-method` |
-| **Templates** | `template-accessibility`, `no-negated-async` |
+
+| Categoria     | Regras                                                                                             |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| **Segurança** | `no-eval`, `no-implied-eval`, `no-new-func`                                                        |
+| **Qualidade** | `eqeqeq`, `prefer-const`, `no-var`, `curly`, `no-console`                                          |
+| **Angular**   | `component-selector`, `directive-selector`, `use-lifecycle-interface`, `no-empty-lifecycle-method` |
+| **Templates** | `template-accessibility`, `no-negated-async`                                                       |
 
 ### TypeScript (tsconfig.json)
-| Flag | Valor | Efeito |
-|------|-------|--------|
-| `strict` | `true` | Habilita todas as verificações estritas |
-| `strictTemplates` | `true` | Tipagem nos templates |
-| `noImplicitReturns` | `true` | Exige retorno em todos os caminhos |
-| `noPropertyAccessFromIndexSignature` | `true` | Acesso explícito por index |
-| `forceConsistentCasingInFileNames` | `true` | Previne bugs de casing entre OS |
+
+| Flag                                 | Valor  | Efeito                                  |
+| ------------------------------------ | ------ | --------------------------------------- |
+| `strict`                             | `true` | Habilita todas as verificações estritas |
+| `strictTemplates`                    | `true` | Tipagem nos templates                   |
+| `noImplicitReturns`                  | `true` | Exige retorno em todos os caminhos      |
+| `noPropertyAccessFromIndexSignature` | `true` | Acesso explícito por index              |
+| `forceConsistentCasingInFileNames`   | `true` | Previne bugs de casing entre OS         |
 
 ### Pre-commit (Husky + lint-staged)
+
 ```
 git commit → Husky intercepta → lint-staged roda:
   *.ts  → eslint --fix → prettier --write
@@ -487,6 +510,7 @@ git commit → Husky intercepta → lint-staged roda:
 ```
 
 ### CI/CD (GitHub Actions)
+
 ```
 git push → Pipeline executa:
   1. npm ci
@@ -501,6 +525,7 @@ git push → Pipeline executa:
 ## 🚀 Instalação e Execução
 
 ### Pré-requisitos
+
 - **Node.js** v22 ou superior
 - **npm** v11 ou superior
 
@@ -529,16 +554,16 @@ npm run build
 
 ## 📜 Scripts Disponíveis
 
-| Script | Comando | Descrição |
-|--------|---------|-----------|
-| `npm start` | `ng serve` | Servidor de desenvolvimento (http://localhost:4200) |
-| `npm run build` | `ng build` | Build de produção otimizado (esbuild) |
-| `npm test` | `vitest run` | Executa 91 testes unitários |
-| `npm run test:watch` | `vitest` | Testes em modo watch |
-| `npm run test:coverage` | `vitest run --coverage` | Testes com relatório de cobertura |
-| `npm run lint` | `ng lint` | Executa ESLint em todo o projeto |
-| `npx prettier --check .` | — | Verifica formatação |
-| `npx prettier --write .` | — | Corrige formatação |
+| Script                   | Comando                 | Descrição                                           |
+| ------------------------ | ----------------------- | --------------------------------------------------- |
+| `npm start`              | `ng serve`              | Servidor de desenvolvimento (http://localhost:4200) |
+| `npm run build`          | `ng build`              | Build de produção otimizado (esbuild)               |
+| `npm test`               | `vitest run`            | Executa 91 testes unitários                         |
+| `npm run test:watch`     | `vitest`                | Testes em modo watch                                |
+| `npm run test:coverage`  | `vitest run --coverage` | Testes com relatório de cobertura                   |
+| `npm run lint`           | `ng lint`               | Executa ESLint em todo o projeto                    |
+| `npx prettier --check .` | —                       | Verifica formatação                                 |
+| `npx prettier --write .` | —                       | Corrige formatação                                  |
 
 ---
 
