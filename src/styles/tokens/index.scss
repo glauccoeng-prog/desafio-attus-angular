@@ -1,0 +1,22 @@
+// ============================================================
+// TOKENS INDEX
+// Arquivo central que importa e exporta todos os tokens
+// ============================================================
+
+// Colors
+@import 'src/styles/tokens/colors';
+
+// Spacing
+@import 'src/styles/tokens/spacing';
+
+// Typography
+@import 'src/styles/tokens/typography';
+
+// Shadows
+@import 'src/styles/tokens/shadows';
+
+// ============================================================
+// EXPORTS
+// Todos os tokens estão disponíveis globalmente após este
+// arquivo ser importado com @use ou @import
+// ============================================================

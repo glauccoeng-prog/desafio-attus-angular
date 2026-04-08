@@ -1,0 +1,19 @@
+// ============================================================
+// UTILITIES INDEX
+// Arquivo central que importa todos os utilitários
+// ============================================================
+
+// Responsive breakpoints and utilities
+@import 'src/styles/utilities/responsive';
+
+// Spacing utility classes
+@import 'src/styles/utilities/spacing-utilities';
+
+// Typography utility classes
+@import 'src/styles/utilities/typography-utilities';
+
+// ============================================================
+// EXPORTS
+// Todas as classes utilitárias estão disponíveis globalmente
+// após este arquivo ser importado
+// ============================================================

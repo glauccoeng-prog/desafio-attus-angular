@@ -1,0 +1,77 @@
+// ============================================================
+// SPACING TOKENS
+// Escala de espaçamentos consistente em todo o projeto
+// ============================================================
+
+// BASE SPACING SCALE (múltiplos de 4px)
+$spacing-xs: 2px;
+$spacing-sm: 4px;
+$spacing-md: 8px;
+$spacing-lg: 12px;
+$spacing-xl: 16px;
+$spacing-2xl: 20px;
+$spacing-3xl: 24px;
+$spacing-4xl: 32px;
+$spacing-5xl: 40px;
+$spacing-6xl: 48px;
+$spacing-7xl: 56px;
+$spacing-8xl: 64px;
+
+// PADDING SHORTCUTS
+// Usados em componentes como padding: $padding-md (equivalente a padding: 8px)
+$padding-xs: $spacing-xs;
+$padding-sm: $spacing-sm;
+$padding-md: $spacing-md;
+$padding-lg: $spacing-lg;
+$padding-xl: $spacing-xl;
+$padding-2xl: $spacing-2xl;
+$padding-3xl: $spacing-3xl;
+
+// MARGIN SHORTCUTS
+$margin-xs: $spacing-xs;
+$margin-sm: $spacing-sm;
+$margin-md: $spacing-md;
+$margin-lg: $spacing-lg;
+$margin-xl: $spacing-xl;
+$margin-2xl: $spacing-2xl;
+$margin-3xl: $spacing-3xl;
+
+// GAP SHORTCUTS (para flex e grid)
+$gap-xs: $spacing-xs;
+$gap-sm: $spacing-sm;
+$gap-md: $spacing-md;
+$gap-lg: $spacing-lg;
+$gap-xl: $spacing-xl;
+
+// COMPONENT-SPECIFIC SPACING
+// Header
+$header-padding-vertical: $spacing-lg;
+$header-padding-horizontal: $spacing-3xl;
+$header-padding-mobile: $spacing-md $spacing-sm;
+
+// Card
+$card-padding: $spacing-xl;
+$card-padding-compact: $spacing-lg;
+$card-gap: $spacing-lg;
+
+// Modal / Dialog
+$modal-padding: $spacing-3xl;
+$modal-gap: $spacing-lg;
+
+// Button
+$button-padding-vertical: $spacing-lg;
+$button-padding-horizontal: $spacing-xl;
+$button-padding-small: $spacing-md $spacing-lg;
+
+// Form
+$form-field-gap: $spacing-md;
+$form-section-gap: $spacing-lg;
+
+// Layout
+$content-padding: $spacing-3xl;
+$content-padding-mobile: $spacing-xl;
+$sidebar-padding: $spacing-3xl;
+$sidebar-padding-mobile: $spacing-xl;
+
+// Border radius related spacing (não é radius, mas espaçamento de elementos arredondados)
+$rounded-element-padding: $spacing-lg;

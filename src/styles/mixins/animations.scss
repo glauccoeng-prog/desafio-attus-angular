@@ -1,0 +1,232 @@
+// ============================================================
+// ANIMATION MIXINS & KEYFRAMES
+// Animações e transições reutilizáveis
+// ============================================================
+
+// ============================================================
+// KEYFRAMES
+// ============================================================
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-top {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+// ============================================================
+// ANIMATION MIXINS
+// ============================================================
+
+// MIXIN: Fade in
+@mixin animate-fade-in($duration: 0.3s, $delay: 0s) {
+  animation: fade-in $duration ease-out $delay forwards;
+}
+
+// MIXIN: Fade out
+@mixin animate-fade-out($duration: 0.3s, $delay: 0s) {
+  animation: fade-out $duration ease-out $delay forwards;
+}
+
+// MIXIN: Slide in from left
+@mixin animate-slide-in-left($duration: 0.3s, $delay: 0s) {
+  animation: slide-in-left $duration ease-out $delay forwards;
+}
+
+// MIXIN: Slide in from right
+@mixin animate-slide-in-right($duration: 0.3s, $delay: 0s) {
+  animation: slide-in-right $duration ease-out $delay forwards;
+}
+
+// MIXIN: Slide in from top
+@mixin animate-slide-in-top($duration: 0.3s, $delay: 0s) {
+  animation: slide-in-top $duration ease-out $delay forwards;
+}
+
+// MIXIN: Slide in from bottom
+@mixin animate-slide-in-bottom($duration: 0.3s, $delay: 0s) {
+  animation: slide-in-bottom $duration ease-out $delay forwards;
+}
+
+// MIXIN: Scale in
+@mixin animate-scale-in($duration: 0.3s, $delay: 0s) {
+  animation: scale-in $duration ease-out $delay forwards;
+}
+
+// MIXIN: Scale out
+@mixin animate-scale-out($duration: 0.3s, $delay: 0s) {
+  animation: scale-out $duration ease-out $delay forwards;
+}
+
+// MIXIN: Spin
+@mixin animate-spin($duration: 1s) {
+  animation: spin $duration linear infinite;
+}
+
+// MIXIN: Pulse
+@mixin animate-pulse($duration: 1s) {
+  animation: pulse $duration ease-in-out infinite;
+}
+
+// MIXIN: Bounce
+@mixin animate-bounce($duration: 0.5s) {
+  animation: bounce $duration ease-in-out infinite;
+}
+
+// MIXIN: Shimmer (loading skeleton)
+@mixin animate-shimmer($duration: 2s) {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer $duration infinite;
+}
+
+// ============================================================
+// TRANSITION MIXINS
+// ============================================================
+
+// MIXIN: Smooth transition
+@mixin transition-smooth($properties: all, $duration: 0.3s, $easing: ease) {
+  transition: $properties $duration $easing;
+}
+
+// MIXIN: Fast transition
+@mixin transition-fast($properties: all) {
+  transition: $properties 0.15s ease;
+}
+
+// MIXIN: Slow transition
+@mixin transition-slow($properties: all) {
+  transition: $properties 0.5s ease;
+}
+
+// MIXIN: Multiple transitions
+@mixin transition-multi($transition-list) {
+  transition: $transition-list;
+}

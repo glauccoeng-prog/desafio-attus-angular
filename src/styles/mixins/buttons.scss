@@ -1,0 +1,174 @@
+// ============================================================
+// BUTTON MIXINS
+// Estilos reutilizáveis para botões
+// ============================================================
+
+@import 'src/styles/tokens/spacing';
+@import 'src/styles/tokens/shadows';
+
+// MIXIN: Botão com estado hover elevado
+@mixin btn-hover-elevated {
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: $shadow-level-3;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// MIXIN: Botão com hover de cor
+@mixin btn-hover-color($base-color, $hover-color: null) {
+  $hover: if($hover-color, $hover-color, darken($base-color, 8%));
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $hover;
+  }
+
+  &:focus {
+    box-shadow: $shadow-focus;
+  }
+}
+
+// MIXIN: Botão com estado desabilitado
+@mixin btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+
+  &:hover {
+    background-color: inherit;
+    box-shadow: none;
+  }
+}
+
+// MIXIN: Botão primário
+@mixin btn-primary {
+  background-color: $color-primary;
+  color: white;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    @include btn-hover-color($color-primary);
+  }
+
+  &:focus {
+    box-shadow: $shadow-focus;
+  }
+
+  &:disabled {
+    @include btn-disabled;
+  }
+}
+
+// MIXIN: Botão secundário (outline)
+@mixin btn-secondary {
+  background-color: transparent;
+  color: $color-primary;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  border: 2px solid $color-primary;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba($color-primary, 0.1);
+  }
+
+  &:focus {
+    box-shadow: $shadow-focus;
+  }
+
+  &:disabled {
+    @include btn-disabled;
+  }
+}
+
+// MIXIN: Botão destrutivo (delete/remove)
+@mixin btn-destructive {
+  background-color: $color-error;
+  color: white;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    @include btn-hover-color($color-error);
+  }
+
+  &:focus {
+    box-shadow: $shadow-error;
+  }
+
+  &:disabled {
+    @include btn-disabled;
+  }
+}
+
+// MIXIN: Botão sucesso
+@mixin btn-success {
+  background-color: $color-success;
+  color: white;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    @include btn-hover-color($color-success);
+  }
+
+  &:focus {
+    box-shadow: $shadow-success;
+  }
+
+  &:disabled {
+    @include btn-disabled;
+  }
+}
+
+// MIXIN: Botão pequeno
+@mixin btn-small {
+  padding: $button-padding-small;
+  font-size: $spacing-md;
+}
+
+// MIXIN: Botão tamanho completo
+@mixin btn-full-width {
+  width: 100%;
+  display: block;
+}
+
+// MIXIN: Botão com ícone
+@mixin btn-icon {
+  padding: $spacing-lg;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  svg,
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
