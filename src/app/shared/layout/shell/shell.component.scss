@@ -63,6 +63,27 @@
 }
 
 // ============================================================
+// CLOSE BUTTON FIXES
+// ============================================================
+
+// Remove persistent hover/ripple visual from close button when not actively hovering
+::ng-deep mat-sidenav button[aria-label="Fechar menu"] {
+  .mat-mdc-button-persistent-ripple {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover .mat-mdc-button-persistent-ripple,
+  &:focus .mat-mdc-button-persistent-ripple {
+    opacity: 0.08;
+  }
+
+  &:active .mat-mdc-button-persistent-ripple {
+    opacity: 0.16;
+  }
+}
+
+// ============================================================
 // MAIN CONTENT AREA
 // ============================================================
 
